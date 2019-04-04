@@ -1,0 +1,46 @@
+﻿  AppClass.cpp
+  Camera.cpp
+  CameraManager.cpp
+  FileReader.cpp
+  Folder.cpp
+  GLSystem.cpp
+  Light.cpp
+  LightManager.cpp
+  Main.cpp
+  Material.cpp
+  MaterialManager.cpp
+  Mesh.cpp
+  MeshManager.cpp
+  Shader.cpp
+  ShaderCompiler.cpp
+  ShaderManager.cpp
+  SystemSingleton.cpp
+  Text.cpp
+  Texture.cpp
+  TextureManager.cpp
+  Compiling...
+  Window.cpp
+  Generating code
+  All 1591 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  C07_System.vcxproj -> C:\Users\toxic\Documents\Git\Simplex_2185\Z_DELETE\C07_System.exe
+  Copying files...
+          1 file(s) copied.
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Basic-Instanced.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Basic.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Basic.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\BasicColor.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\BasicColor.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Line.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Line.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Minimal.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Minimal.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\MinimalRed.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Simplex.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Simplex.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Skybox.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Skybox.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Text.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Text.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Wireframe.fs
+  17 File(s) copied

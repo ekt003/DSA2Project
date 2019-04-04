@@ -1,0 +1,12 @@
+﻿  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  AppClass.cpp
+  AppClassControls.cpp
+  AppClassGUI.cpp
+  AppClassMain.cpp
+  ControllerConfiguration.cpp
+  Main.cpp
+  MyMesh.cpp
+  Generating Code...
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppCommon.targets(720,5): error MSB6006: "link.exe" exited with code 1.

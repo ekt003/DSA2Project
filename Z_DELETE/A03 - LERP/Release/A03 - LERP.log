@@ -1,0 +1,39 @@
+﻿  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  AppClass.cpp
+c:\users\toxic\documents\git\simplex_2185\a03 - lerp\appclass.cpp(77): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+  AppClassControls.cpp
+  AppClassGUI.cpp
+  AppClassMain.cpp
+  ControllerConfiguration.cpp
+  Main.cpp
+  MyMesh.cpp
+  Generating code
+  All 920 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  A03 - LERP.vcxproj -> C:\Users\toxic\Documents\Git\Simplex_2185\Z_DELETE\A03 - LERP.exe
+  Copying files...
+          1 file(s) copied.
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Basic-Instanced.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Basic.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Basic.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\BasicColor.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\BasicColor.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Line.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Line.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Minimal.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Minimal.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\MinimalRed.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Simplex.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Simplex.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Skybox.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Skybox.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Text.fs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Text.vs
+  C:\Users\toxic\Documents\Git\Simplex_2185\include\Simplex\Shaders\Wireframe.fs
+  17 File(s) copied
