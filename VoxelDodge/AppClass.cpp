@@ -97,8 +97,29 @@ void Application::Update(void)
 	vector3 shipPos = m_Ship->GetPosition();
 	shipPos.z += 0.5f;
 	m_Ship->SetPosition(shipPos);
+<<<<<<< Updated upstream
 	/*float fDelta = m_pSystem->GetDeltaTime(0);
 	m_pEntityMngr->ApplyForce(vector3(0.0f, 0.0f, 2.0 * fDelta), "Steve");*/
+=======
+
+	//destroy entities that are beyond the camera
+	for (size_t i = 0; i < m_pEntityMngr->GetEntityCount(); i++)
+	{
+		//exclude the ship. ship is always index [0]
+		if (i==0)
+		{
+			continue;
+		}
+		vector3 blockPosition = m_pEntityMngr->GetEntity(i)->GetPosition();
+		//if the object is beyond the near value of the camera
+		//std::cout << "block pos z: " << blockPosition.z << "    camera z" << m_v3CameraPos.z << std::endl;
+		if (blockPosition.z < m_v3CameraPos.z)
+		{
+			//std::cout << "DELETED CUBE" << std::endl;
+			m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetUniqueID(i));
+		}
+	}
+>>>>>>> Stashed changes
 }
 void Application::Display(void)
 {

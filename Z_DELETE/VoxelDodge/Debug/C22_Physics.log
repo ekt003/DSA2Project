@@ -1,21 +1,25 @@
 ﻿  AppClass.cpp
+<<<<<<< Updated upstream
   C22_Physics.vcxproj -> D:\Profiles\mtp8375\DSA2\DSA2Project\Z_DELETE\VoxelDodge_d.exe
+=======
+  C22_Physics.vcxproj -> C:\Users\toxic\Documents\Git\DSA2Project\Z_DELETE\VoxelDodge_d.exe
+>>>>>>> Stashed changes
   Copying Shaders...
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Basic.fs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Basic.vs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\BasicColor.fs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\BasicColor.vs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Line.fs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Line.vs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Minimal.fs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Minimal.vs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\MinimalRed.fs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Simplex.fs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Simplex.vs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Skybox.fs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Skybox.vs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Text.fs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Text.vs
-  D:\Profiles\mtp8375\DSA2\DSA2Project\include\Simplex\Shaders\Wireframe.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Basic.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Basic.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\BasicColor.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\BasicColor.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Line.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Line.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Minimal.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Minimal.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\MinimalRed.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Simplex.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Simplex.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Skybox.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Skybox.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Text.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Text.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Wireframe.fs
   17 File(s) copied
