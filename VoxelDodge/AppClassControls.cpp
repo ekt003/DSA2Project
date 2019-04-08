@@ -80,10 +80,12 @@ void Application::ProcessKeyPressed(sf::Event a_event)
 		m_bModifier = true;
 		break;
 	case sf::Keyboard::Left:
-			m_fDelta -= 0.5f;
-			break;
+		if(m_fDelta >= -10.0f)
+			m_fDelta -= 1.0f;
+		break;
 	case sf::Keyboard::Right:
-		m_fDelta += 0.5f;
+		if(m_fDelta <= 10.0f)
+			m_fDelta += 1.0f;
 		break;
 	}
 
