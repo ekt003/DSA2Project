@@ -13,10 +13,13 @@ void Application::InitVariables(void)
 	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Steve");
 	m_pEntityMngr->UsePhysicsSolver();
 	
+	m_Ship = m_pEntityMngr->GetEntity(0);
+
+	/*
 	for (int i = 0; i < 100; i++)
 	{
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + std::to_string(i));
-		m_Ship = m_pEntityMngr->GetEntity(0);
+		
 		vector3 v3Position = vector3(glm::sphericalRand(12.0f));
 		v3Position.y = 0.0f;
 		matrix4 m4Position = glm::translate(v3Position);
@@ -25,7 +28,7 @@ void Application::InitVariables(void)
 		//m_pEntityMngr->SetMass(2);
 
 		//m_pEntityMngr->SetMass(i+1);
-	}
+	}*/
 }
 void Application::Update(void)
 {
@@ -47,11 +50,29 @@ void Application::Update(void)
 	m_v3CameraPos.z -= 10.0f;
 	m_v3CameraPos.y += 3.0f;
 
-
+	m_pEntityMngr->UsePhysicsSolver();
 
 	glm::mat4 rot = glm::rotate(IDENTITY_M4, glm::radians(m_fDelta), AXIS_Z);
 
 	vector3 newUp = vector3(rot * vector4(AXIS_Y, 0));
+
+	//SPAWN CUBES
+	if (timer == 10) { //creates one entity every 10 update loops
+		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
+
+		//sets x position based on random value centered around player
+		//sets y position as zero always
+		//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
+		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand(-30, 30), 0.0f, m_v3CameraPos.z + 100); 
+		matrix4 m4Position = glm::translate(v3Position);
+		//setting position of cube
+		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
+		//reseting timer
+		timer = 0;
+	}
+	//cube timer, to be done better later
+	timer++;
+
 
 	m_pCameraMngr->SetPositionTargetAndUpward(m_v3CameraPos, m_Ship->GetPosition(), newUp);
 	//Set the model matrix for the main object
@@ -60,6 +81,9 @@ void Application::Update(void)
 	//Add objects to render list
 	m_pEntityMngr->AddEntityToRenderList(-1, true);
 	//m_pEntityMngr->AddEntityToRenderList(-1, true);
+	vector3 shipPos = m_Ship->GetPosition();
+	shipPos.z += 0.5f;
+	m_Ship->SetPosition(shipPos);
 }
 void Application::Display(void)
 {
