@@ -80,12 +80,8 @@ void Application::ProcessKeyPressed(sf::Event a_event)
 		m_bModifier = true;
 		break;
 	case sf::Keyboard::Left:
-		if(m_fDelta >= -10.0f)
-			m_fDelta -= 1.0f;
 		break;
 	case sf::Keyboard::Right:
-		if(m_fDelta <= 10.0f)
-			m_fDelta += 1.0f;
 		break;
 	}
 
@@ -131,6 +127,12 @@ void Application::ProcessKeyReleased(sf::Event a_event)
 	case sf::Keyboard::LShift:
 	case sf::Keyboard::RShift:
 		m_bModifier = false;
+	case sf::Keyboard::Left:
+		isRotating = false;
+		break;
+	case sf::Keyboard::Right:
+		isRotating = false;
+		break;
 	}
 
 	//gui
@@ -425,11 +427,17 @@ void Application::ProcessKeyboard(void)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		m_pEntityMngr->ApplyForce(vector3(2.0f * fDelta, 0.0f, 0.0f), "Steve");
+		if (m_fDelta >= -10.0f)
+			m_fDelta -= 1.0f;
+		isRotating = true;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		m_pEntityMngr->ApplyForce(vector3(-2.0f * fDelta, 0.0f, 0.0f), "Steve");
+		if (m_fDelta <= 10.0f)
+				m_fDelta += 1.0f;
+		isRotating = true;
 	}
 
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))

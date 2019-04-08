@@ -33,6 +33,7 @@ private:
 	MyEntity* m_Ship; //Space Ship
 	float m_fDelta = 0; //Change in angle of both camera and ship
 	vector3 m_v3CameraPos; //cameras position
+	bool isRotating = false;
 
 	uint m_uRenderCallCount = 0; //count of render calls per frame
 	uint m_uControllerCount = 0; //count of controllers connected

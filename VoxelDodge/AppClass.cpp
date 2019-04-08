@@ -52,10 +52,24 @@ void Application::Update(void)
 
 	m_pEntityMngr->UsePhysicsSolver();
 
+	if (!isRotating)
+	{
+		if (m_fDelta > 0)
+		{
+			m_fDelta -= 1.0f;
+		}
+		else if (m_fDelta < 0)
+		{
+			m_fDelta += 1;
+		}
+	}
+
 	glm::mat4 rot = glm::rotate(IDENTITY_M4, glm::radians(m_fDelta), AXIS_Z);
 
 	vector3 newUp = vector3(rot * vector4(AXIS_Y, 0));
 
+
+	m_pCameraMngr->SetPositionTargetAndUpward(m_v3CameraPos, m_Ship->GetPosition(), newUp);
 	//SPAWN CUBES
 	if (timer == 10) { //creates one entity every 10 update loops
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
@@ -74,7 +88,6 @@ void Application::Update(void)
 	timer++;
 
 
-	m_pCameraMngr->SetPositionTargetAndUpward(m_v3CameraPos, m_Ship->GetPosition(), newUp);
 	//Set the model matrix for the main object
 	//m_pEntityMngr->SetModelMatrix(m_m4Steve, "Steve");
 
