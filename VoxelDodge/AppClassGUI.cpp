@@ -47,6 +47,7 @@ void Application::DrawGUI(void)
 			ImGui::Text("	 F4: Orthographic Z\n");
 			ImGui::Separator();
 			ImGui::Text("Arrows: Apply force to Steve\n");
+			ImGui::Text("Score: %.0f", ImGui::GetTime() * 10);
 		}
 		ImGui::End();
 	}
