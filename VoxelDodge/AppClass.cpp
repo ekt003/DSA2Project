@@ -16,6 +16,7 @@ void Application::InitVariables(void)
 	for (int i = 0; i < 100; i++)
 	{
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + std::to_string(i));
+		m_Ship = m_pEntityMngr->GetEntity(0);
 		vector3 v3Position = vector3(glm::sphericalRand(12.0f));
 		v3Position.y = 0.0f;
 		matrix4 m4Position = glm::translate(v3Position);
@@ -40,6 +41,19 @@ void Application::Update(void)
 	//Update Entity Manager
 	m_pEntityMngr->Update();
 
+	//Update camera
+	m_v3CameraPos = m_Ship->GetPosition();
+
+	m_v3CameraPos.z -= 10.0f;
+	m_v3CameraPos.y += 3.0f;
+
+
+
+	glm::mat4 rot = glm::rotate(IDENTITY_M4, glm::radians(m_fDelta), AXIS_Z);
+
+	vector3 newUp = vector3(rot * vector4(AXIS_Y, 0));
+
+	m_pCameraMngr->SetPositionTargetAndUpward(m_v3CameraPos, m_Ship->GetPosition(), newUp);
 	//Set the model matrix for the main object
 	//m_pEntityMngr->SetModelMatrix(m_m4Steve, "Steve");
 
