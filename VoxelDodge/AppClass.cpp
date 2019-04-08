@@ -97,6 +97,8 @@ void Application::Update(void)
 	vector3 shipPos = m_Ship->GetPosition();
 	shipPos.z += 0.5f;
 	m_Ship->SetPosition(shipPos);
+	/*float fDelta = m_pSystem->GetDeltaTime(0);
+	m_pEntityMngr->ApplyForce(vector3(0.0f, 0.0f, 2.0 * fDelta), "Steve");*/
 }
 void Application::Display(void)
 {
