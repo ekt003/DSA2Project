@@ -1,21 +1,21 @@
-﻿  AppClassGUI.cpp
-  C22_Physics.vcxproj -> D:\Profiles\mtp8375\DSA2\Project\DSA2Project\Z_DELETE\VoxelDodge_d.exe
+﻿  AppClassControls.cpp
+  C22_Physics.vcxproj -> Z:\IGMProfile\Desktop\DSA2Project\Z_DELETE\VoxelDodge_d.exe
   Copying Shaders...
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Basic.fs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Basic.vs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\BasicColor.fs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\BasicColor.vs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Line.fs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Line.vs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Minimal.fs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Minimal.vs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\MinimalRed.fs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Simplex.fs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Simplex.vs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Skybox.fs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Skybox.vs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Text.fs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Text.vs
-  D:\Profiles\mtp8375\DSA2\Project\DSA2Project\include\Simplex\Shaders\Wireframe.fs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Basic.fs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Basic.vs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\BasicColor.fs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\BasicColor.vs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Line.fs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Line.vs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Minimal.fs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Minimal.vs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\MinimalRed.fs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Simplex.fs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Simplex.vs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Skybox.fs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Skybox.vs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Text.fs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Text.vs
+  Z:\IGMProfile\Desktop\DSA2Project\include\Simplex\Shaders\Wireframe.fs
   17 File(s) copied
