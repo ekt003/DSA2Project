@@ -45,30 +45,37 @@ void Application::Update(void)
 	m_pEntityMngr->Update();
 
 	//Update camera
-	m_v3CameraPos = m_Ship->GetPosition();
+	m_v3CameraPos = m_Ship->GetPosition(); //Get position of steve
 
+	//Set camera to be up and behind steve
 	m_v3CameraPos.z -= 10.0f;
 	m_v3CameraPos.y += 3.0f;
 
+	//Handle Collisions
 	m_pEntityMngr->UsePhysicsSolver();
 
+	//Handling counter rotation
 	if (!isRotating)
 	{
+		//If we're tilting to the right, roll left
 		if (m_fDelta > 0)
 		{
 			m_fDelta -= 1.0f;
 		}
+		//If we're tilting to the left, roll right
 		else if (m_fDelta < 0)
 		{
-			m_fDelta += 1;
+			m_fDelta += 1.0f;
 		}
 	}
 
+	//Calculate rotation matrix of the up vector for the camera
 	glm::mat4 rot = glm::rotate(IDENTITY_M4, glm::radians(m_fDelta), AXIS_Z);
 
+	//apply rotation to the camera's up vector (the Y-AXIS)
 	vector3 newUp = vector3(rot * vector4(AXIS_Y, 0));
 
-
+	//Set the camera's position, target, and up vector
 	m_pCameraMngr->SetPositionTargetAndUpward(m_v3CameraPos, m_Ship->GetPosition(), newUp);
 	//SPAWN CUBES
 	if (timer == 10) { //creates one entity every 10 update loops
@@ -101,15 +108,9 @@ void Application::Update(void)
 	/*float fDelta = m_pSystem->GetDeltaTime(0);
 	m_pEntityMngr->ApplyForce(vector3(0.0f, 0.0f, 2.0 * fDelta), "Steve");*/
 
-
 	//destroy entities that are beyond the camera
-	for (size_t i = 0; i < m_pEntityMngr->GetEntityCount(); i++)
+	for (size_t i = 1; i < m_pEntityMngr->GetEntityCount(); i++)
 	{
-		//exclude the ship. ship is always index [0]
-		if (i==0)
-		{
-			continue;
-		}
 		vector3 blockPosition = m_pEntityMngr->GetEntity(i)->GetPosition();
 		//if the object is beyond the near value of the camera
 		//std::cout << "block pos z: " << blockPosition.z << "    camera z" << m_v3CameraPos.z << std::endl;
@@ -119,7 +120,6 @@ void Application::Update(void)
 			m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetUniqueID(i));
 		}
 	}
-
 }
 void Application::Display(void)
 {
