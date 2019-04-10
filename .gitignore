@@ -1,7 +1,7 @@
 # Specific files and folders
 _Binary/*D.exe
 _Binary/*D.cfg
-Z_DELETE
+Z_DELETE/
 
 # Compiled Object files
 *.slo
@@ -39,3 +39,4 @@ Z_DELETE
 *.db
 .vs/
 _Binary/*_d.ini
+
