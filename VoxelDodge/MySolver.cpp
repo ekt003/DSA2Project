@@ -119,7 +119,7 @@ void MySolver::ResolveCollision(MySolver* a_pOther)
 	{
 		//a_pOther->ApplyForce(GetVelocity());
 		ApplyForce(-m_v3Velocity*2);
-		a_pOther->ApplyForce(vector3(m_v3Velocity.x * 20, m_v3Velocity.y + 50, (m_v3Velocity.z+10) *20));
+		a_pOther->ApplyForce(vector3(m_v3Velocity.x * 30, m_v3Velocity.y + 120, (m_v3Velocity.z+10) *50));
 	}
 	else
 	{
