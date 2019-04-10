@@ -426,17 +426,17 @@ void Application::ProcessKeyboard(void)
 	float fDelta = m_pSystem->GetDeltaTime(0);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		m_pEntityMngr->ApplyForce(vector3(2.0f * fDelta, 0.0f, 0.0f), "Steve");
+		m_pEntityMngr->ApplyForce(vector3(2.0f * fDelta, 0.0f, 0.0f), "Spaceship");
 		if (m_fDelta >= -10.0f)
-			m_fDelta -= 1.0f;
+			m_fDelta -= .5f;
 		isRotating = true;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		m_pEntityMngr->ApplyForce(vector3(-2.0f * fDelta, 0.0f, 0.0f), "Steve");
+		m_pEntityMngr->ApplyForce(vector3(-2.0f * fDelta, 0.0f, 0.0f), "Spaceship");
 		if (m_fDelta <= 10.0f)
-				m_fDelta += 1.0f;
+				m_fDelta += .5f;
 		isRotating = true;
 	}
 

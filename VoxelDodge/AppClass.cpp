@@ -10,7 +10,7 @@ void Application::InitVariables(void)
 
 	m_pLightMngr->SetPosition(vector3(0.0f, 3.0f, 13.0f), 1); //set the position of first light (0 is reserved for ambient light)
 
-	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Steve");
+	m_pEntityMngr->AddEntity("Minecraft\\Spaceship.obj", "Spaceship");
 	m_pEntityMngr->UsePhysicsSolver();
 	
 	m_Ship = m_pEntityMngr->GetEntity(0);
@@ -60,12 +60,12 @@ void Application::Update(void)
 		//If we're tilting to the right, roll left
 		if (m_fDelta > 0)
 		{
-			m_fDelta -= 1.0f;
+			m_fDelta -= .5f;
 		}
 		//If we're tilting to the left, roll right
 		else if (m_fDelta < 0)
 		{
-			m_fDelta += 1.0f;
+			m_fDelta += .5f;
 		}
 	}
 
