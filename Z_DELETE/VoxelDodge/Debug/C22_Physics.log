@@ -1,4 +1,14 @@
 ﻿  AppClass.cpp
+d:\profiles\ekt6170\source\repos\dsa2project\voxeldodge\appclass.cpp(189): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+d:\profiles\ekt6170\source\repos\dsa2project\voxeldodge\appclass.cpp(190): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   AppClassControls.cpp
   AppClassGUI.cpp
   AppClassMain.cpp
