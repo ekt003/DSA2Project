@@ -1,4 +1,9 @@
 ﻿  AppClass.cpp
+  AppClassControls.cpp
+  AppClassGUI.cpp
+  AppClassMain.cpp
+  Main.cpp
+  Generating Code...
   C22_Physics.vcxproj -> D:\Profiles\ekt6170\source\repos\DSA2Project\Z_DELETE\VoxelDodge_d.exe
   Copying Shaders...
   D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs

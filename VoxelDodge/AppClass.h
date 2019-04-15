@@ -105,6 +105,7 @@ public:
 	OUTPUT: ---
 	*/
 	void Run(void);
+
 	/*
 	USAGE: Destructor
 	ARGUMENTS: ---
@@ -155,6 +156,20 @@ private:
 	OUTPUT: ---
 	*/
 	void Update(void);
+	/*
+	USAGE: Loads proper spawn file and calls spawn method
+	ARGUMENTS:
+	-int SpawnPhase: determines which file is loaded
+	OUTPUT: ---
+	*/
+	void LoadEntity(int a_spawnPhase);
+	/*
+	USAGE: Spawns entities based on file
+	ARGUMENTS: ---
+	OUTPUT: ---
+	*/
+	void SpawnEntity(void);
+
 	/*
 	USAGE: Displays the scene
 	ARGUMENTS: ---
