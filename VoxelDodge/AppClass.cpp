@@ -71,8 +71,19 @@ void Application::Update(void)
 		//loads appropriate file based on random number generation
 		spawnPhase = glm::linearRand(1, 5);
 		LoadEntity(spawnPhase);
+		//speed up
+		m_fSpeed += 0.05f;
 		//resets timer
 		timer = 0;
+	}
+
+	if (timer < 100)
+	{
+		speedup = true;
+	}
+	else
+	{
+		speedup = false;
 	}
 
 	if (timer % 10 == 0) { //creates one entity every 10 update loops
@@ -90,7 +101,7 @@ void Application::Update(void)
 	}
 	//cube timer, to be done better later
 	timer++;
-
+	m_uScore++;
 
 	//Set the model matrix for the main object
 	//m_pEntityMngr->SetModelMatrix(m_m4Steve, "Steve");
@@ -99,7 +110,7 @@ void Application::Update(void)
 	m_pEntityMngr->AddEntityToRenderList(-1, true);
 	//m_pEntityMngr->AddEntityToRenderList(-1, true);
 	vector3 shipPos = m_Ship->GetPosition();
-	shipPos.z += 0.5f;
+	shipPos.z += m_fSpeed;
 	m_Ship->SetPosition(shipPos);
 
 	/*float fDelta = m_pSystem->GetDeltaTime(0);

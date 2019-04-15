@@ -13,6 +13,7 @@ Date: 2017/06
 #include "MyEntityManager.h"
 #include "MyEntity.h"
 
+#include<vector>
 #include <fstream>
 
 namespace Simplex
@@ -29,6 +30,10 @@ private:
 	uint spawnPhase = 0;
 	bool spawnRandom = true;
 	std::ifstream fileReader;
+
+	//patern for random spawning
+	int spawnMap[24][100] = {};;
+
 	static ImGuiObject gui; //GUI object
 	bool m_bGUI_Main = true; //show Main GUI window?
 	bool m_bGUI_Console = true; //show Credits GUI window?
@@ -40,6 +45,9 @@ private:
 	float m_fDelta = 0; //Change in angle of both camera and ship
 	vector3 m_v3CameraPos; //cameras position
 	bool isRotating = false;
+	float m_fSpeed = 0.5f;
+	uint m_uScore = 0;
+	bool speedup = false;
 
 	uint m_uRenderCallCount = 0; //count of render calls per frame
 	uint m_uControllerCount = 0; //count of controllers connected
@@ -158,14 +166,20 @@ private:
 	*/
 	void Update(void);
 	/*
-	USAGE: Loads proper spawn file and calls spawn method
+	USAGE: Loads proper spawn file based on random number
 	ARGUMENTS:
 	-int SpawnPhase: determines which file is loaded
 	OUTPUT: ---
 	*/
 	void LoadEntity(int a_spawnPhase);
 	/*
-	USAGE: Spawns entities based on file
+	USAGE: Reads file and fills spawnMap based on file
+	ARGUMENTS: ---
+	OUTPUT: ---
+	*/
+	void FillMap(void);
+	/*
+	USAGE: Spawns entities in based on filled spawn map
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
