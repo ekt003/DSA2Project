@@ -76,7 +76,8 @@ void Application::Update(void)
 	}
 
 	if (timer % 10 == 0) { //creates one entity every 10 update loops
-		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
+		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
+		m_nCubeCount++;
 
 		//sets x position based on random value centered around player
 		//sets y position as zero always

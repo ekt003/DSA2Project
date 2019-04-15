@@ -23,6 +23,7 @@ class Application
 	MyEntityManager* m_pEntityMngr = nullptr; //Entity Manager
 private:
 	String m_sProgrammer = "The Bastard Children"; //programmer
+	int m_nCubeCount = 0; //Number of total cubes created;
 
 	uint timer = 0;
 	uint spawnPhase = 0;
