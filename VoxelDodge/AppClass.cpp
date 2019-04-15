@@ -15,20 +15,6 @@ void Application::InitVariables(void)
 	
 	m_Ship = m_pEntityMngr->GetEntity(0);
 
-	/*
-	for (int i = 0; i < 100; i++)
-	{
-		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + std::to_string(i));
-		
-		vector3 v3Position = vector3(glm::sphericalRand(12.0f));
-		v3Position.y = 0.0f;
-		matrix4 m4Position = glm::translate(v3Position);
-		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
-		m_pEntityMngr->UsePhysicsSolver();
-		//m_pEntityMngr->SetMass(2);
-
-		//m_pEntityMngr->SetMass(i+1);
-	}*/
 }
 void Application::Update(void)
 {
@@ -78,18 +64,48 @@ void Application::Update(void)
 	//Set the camera's position, target, and up vector
 	m_pCameraMngr->SetPositionTargetAndUpward(m_v3CameraPos, m_Ship->GetPosition(), newUp);
 	//SPAWN CUBES
-	if (timer == 10) { //creates one entity every 10 update loops
+
+	//decide spawn patterns
+	if ((timer) == 1000) {
+		std::cout << "HERE";
+		//loads appropriate file based on random number generation
+		spawnPhase = glm::linearRand(1, 5);
+		switch (spawnPhase) {
+		case 1: //Left Turn Spawn
+			std::cout << "Phase1" << std::endl;
+			fileReader.open("SpawnFiles/LeftTurn.txt");
+			break;
+		case 2: //Right Turn Spawn
+			std::cout << "Phase2" << std::endl;
+			fileReader.open("SpawnFiles/RightTurn.txt");
+			break;
+		case 3: //X Spawn
+			std::cout << "Phase3" << std::endl;
+			fileReader.open("SpawnFiles/XSpawn.txt");
+			break;
+		case 4: //S Spawn
+			std::cout << "Phase4" << std::endl;
+			fileReader.open("SpawnFiles/SSpawn.txt");
+			break;
+		case 5: //Diamond Spawn
+			std::cout << "Phase5" << std::endl;
+			fileReader.open("SpawnFiles/DiamondSpawn.txt");
+			break;
+		}//LoadFile(glm::linearRand(1, 5));
+		timer = 0;
+	}
+
+	if (timer % 10 == 0) { //creates one entity every 10 update loops
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
 
 		//sets x position based on random value centered around player
 		//sets y position as zero always
 		//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
-		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand(-30, 30), 0.0f, m_v3CameraPos.z + 100); 
+		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand(-30, 30), 0.0f, m_v3CameraPos.z + 100);
 		matrix4 m4Position = glm::translate(v3Position);
 		//setting position of cube
 		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
-		//reseting timer
-		timer = 0;
+
 	}
 	//cube timer, to be done better later
 	timer++;

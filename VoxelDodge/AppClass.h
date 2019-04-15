@@ -13,6 +13,8 @@ Date: 2017/06
 #include "MyEntityManager.h"
 #include "MyEntity.h"
 
+#include <fstream>
+
 namespace Simplex
 {
 //Adding Application to the Simplex namespace
@@ -23,6 +25,9 @@ private:
 	String m_sProgrammer = "The Bastard Children"; //programmer
 
 	uint timer = 0;
+	uint spawnPhase = 0;
+	bool spawnRandom = true;
+	std::ifstream fileReader;
 	static ImGuiObject gui; //GUI object
 	bool m_bGUI_Main = true; //show Main GUI window?
 	bool m_bGUI_Console = true; //show Credits GUI window?
