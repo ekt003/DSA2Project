@@ -67,36 +67,49 @@ void Application::Update(void)
 
 	//decide spawn patterns
 	if ((timer) == 1000) {
+		std::cout << "HERE";
 		//loads appropriate file based on random number generation
 		spawnPhase = glm::linearRand(1, 5);
 		LoadEntity(spawnPhase);
+		//speed up
+		m_fSpeed += 0.05f;
 		//resets timer
 		timer = 0;
 	}
 
-	if (spawnRandom) {
-		if (timer % 10 == 0) { //creates one entity every 10 update loops
-			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
-
-			//sets x position based on random value centered around player
-			//sets y position as zero always
-			//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
-			vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand(-30, 30), 0.0f, m_v3CameraPos.z + 100);
-			matrix4 m4Position = glm::translate(v3Position);
-			//setting position of cube
-			m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
-
-		}
+	if (timer < 100)
+	{
+		speedup = true;
 	}
-	
+	else
+	{
+		speedup = false;
+	}
+
+	if (timer % 10 == 0) { //creates one entity every 10 update loops
+		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
+
+		//sets x position based on random value centered around player
+		//sets y position as zero always
+		//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
+		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand(-30, 30), 0.0f, m_v3CameraPos.z + 100);
+		matrix4 m4Position = glm::translate(v3Position);
+		//setting position of cube
+		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
+
+	}
 	//cube timer, to be done better later
 	timer++;
+	m_uScore++;
+
+	//Set the model matrix for the main object
+	//m_pEntityMngr->SetModelMatrix(m_m4Steve, "Steve");
 
 	//Add objects to render list
 	m_pEntityMngr->AddEntityToRenderList(-1, true);
 	//m_pEntityMngr->AddEntityToRenderList(-1, true);
 	vector3 shipPos = m_Ship->GetPosition();
-	shipPos.z += 0.5f;
+	shipPos.z += m_fSpeed;
 	m_Ship->SetPosition(shipPos);
 
 	/*float fDelta = m_pSystem->GetDeltaTime(0);
@@ -121,83 +134,39 @@ void Application::LoadEntity(int a_spawnPhase) {
 	case 1: //Left Turn Spawn
 		std::cout << "Phase1" << std::endl;
 		fileReader.open("SpawnFiles/LeftTurn.txt");
-		FillMap();
+		SpawnEntity();
 		break;
 	case 2: //Right Turn Spawn
 		std::cout << "Phase2" << std::endl;
 		fileReader.open("SpawnFiles/RightTurn.txt");
-		FillMap();
+		SpawnEntity();
 		break;
 	case 3: //X Spawn
 		std::cout << "Phase3" << std::endl;
 		fileReader.open("SpawnFiles/XSpawn.txt");
-		FillMap();
+		SpawnEntity();
 		break;
 	case 4: //S Spawn
 		std::cout << "Phase4" << std::endl;
 		fileReader.open("SpawnFiles/SSpawn.txt");
-		FillMap();
+		SpawnEntity();
 		break;
 	case 5: //Diamond Spawn
 		std::cout << "Phase5" << std::endl;
-		fileReader.open("SpawnFiles/XSpawn.txt");
-		FillMap();
+		fileReader.open("SpawnFiles/DiamondSpawn.txt");
+		SpawnEntity();
 		break;
 	}
 }
 
-void Application::FillMap(void) {
-	/*
-	uint input = 0;
-	uint row = 0;
-	uint col = 0;
-	//if file reader is not open, don't run anything
-	if (!fileReader.is_open())
-		return;
-
-	char c = fileReader.get(); //gets next file value
-	while (fileReader.good()) { //keeps going until at the end of the file
-		input = c - '0'; //converts character input into an int
-		if (c == 10) { //this is a new line
-			row++; //increments row
-			std::cout << std::endl;
-		}
-		else {
-			if (input == 0 || input == 1) { //gets rid of garbage non binary values
-				spawnMap[row][col] = input; //sets map to read in value
-				std::cout << spawnMap[row][col];
-				col++; //increments column
-			}
-		}
-
-		c = fileReader.get(); //gets next input
-	}
-	fileReader.close(); //closes file reader at the end of the method call
-
-	SpawnEntity(); //spawns entities based on newly loaded array*/
-}
-
 void Application::SpawnEntity(void) {
-	vector3 startingPoint = m_Ship->GetPosition();
-
-	//iterating through spawn map
-	for (int i = 0; i < 24; i++) {
-		for (int j = 0; j < 90; j++) {
-			if (spawnMap[i][j] == 1) {
-				m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
-				vector3 position = startingPoint;
-				position.x += (i*1.1);
-				position.z += ((j*1.1) + 100);
-
-				matrix4 m4Position = glm::translate(position);
-
-				m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
-			}
-			
-
-		}
+	std::cout << "SPAWN ENTITY" << std::endl;
+	char c = fileReader.get();
+	while (fileReader.good()) {
+		std::cout << c;
+		c = fileReader.get();
 	}
-
+	fileReader.close();
 }
 
 void Application::Display(void)
