@@ -140,39 +140,81 @@ void Application::LoadEntity(int a_spawnPhase) {
 	case 1: //Left Turn Spawn
 		std::cout << "Phase1" << std::endl;
 		fileReader.open("SpawnFiles/LeftTurn.txt");
-		SpawnEntity();
+		FillMap();
 		break;
 	case 2: //Right Turn Spawn
 		std::cout << "Phase2" << std::endl;
 		fileReader.open("SpawnFiles/RightTurn.txt");
-		SpawnEntity();
+		FillMap();
 		break;
 	case 3: //X Spawn
 		std::cout << "Phase3" << std::endl;
 		fileReader.open("SpawnFiles/XSpawn.txt");
-		SpawnEntity();
+		FillMap();
 		break;
 	case 4: //S Spawn
 		std::cout << "Phase4" << std::endl;
 		fileReader.open("SpawnFiles/SSpawn.txt");
-		SpawnEntity();
+		FillMap();
 		break;
 	case 5: //Diamond Spawn
 		std::cout << "Phase5" << std::endl;
-		fileReader.open("SpawnFiles/DiamondSpawn.txt");
-		SpawnEntity();
+		fileReader.open("SpawnFiles/XSpawn.txt");
+		FillMap();
 		break;
 	}
 }
 
-void Application::SpawnEntity(void) {
-	std::cout << "SPAWN ENTITY" << std::endl;
-	char c = fileReader.get();
-	while (fileReader.good()) {
-		//std::cout << c;
-		c = fileReader.get();
+void Application::FillMap(void) {
+	/*
+	uint input = 0;
+	uint row = 0;
+	uint col = 0;
+	//if file reader is not open, don't run anything
+	if (!fileReader.is_open())
+		return;
+	char c = fileReader.get(); //gets next file value
+	while (fileReader.good()) { //keeps going until at the end of the file
+		input = c - '0'; //converts character input into an int
+		if (c == 10) { //this is a new line
+			row++; //increments row
+			std::cout << std::endl;
+		}
+		else {
+			if (input == 0 || input == 1) { //gets rid of garbage non binary values
+				spawnMap[row][col] = input; //sets map to read in value
+				std::cout << spawnMap[row][col];
+				col++; //increments column
+			}
+		}
+		c = fileReader.get(); //gets next input
 	}
-	fileReader.close();
+	fileReader.close(); //closes file reader at the end of the method call
+	SpawnEntity(); //spawns entities based on newly loaded array*/
+}
+
+
+void Application::SpawnEntity(void) {
+	vector3 startingPoint = m_Ship->GetPosition();
+
+	//iterating through spawn map
+	for (int i = 0; i < 24; i++) {
+		for (int j = 0; j < 90; j++) {
+			if (spawnMap[i][j] == 1) {
+				m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
+				vector3 position = startingPoint;
+				position.x += (i*1.1);
+				position.z += ((j*1.1) + 100);
+
+				matrix4 m4Position = glm::translate(position);
+
+				m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
+			}
+
+
+		}
+	}
+
 }
 
 void Application::Display(void)

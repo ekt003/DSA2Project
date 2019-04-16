@@ -125,6 +125,7 @@ public:
 
 private:
 #pragma region Initialization / Release
+	
 	/*
 	USAGE: Initialize the window
 	ARGUMENTS: String a_sWindowName = "GLFW" -> Window name
