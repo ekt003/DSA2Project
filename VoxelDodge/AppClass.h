@@ -32,7 +32,7 @@ private:
 	std::ifstream fileReader;
 
 	//patern for random spawning
-	int spawnMap[24][100] = {};;
+	int spawnMap[90][24] = {};
 
 	static ImGuiObject gui; //GUI object
 	bool m_bGUI_Main = true; //show Main GUI window?
