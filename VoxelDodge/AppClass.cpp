@@ -10,6 +10,11 @@ void Application::InitVariables(void)
 
 	m_pLightMngr->SetPosition(vector3(0.0f, 3.0f, 13.0f), 1); //set the position of first light (0 is reserved for ambient light)
 
+	Simplex::TextureManager::GetInstance()->LoadTexture("ShipUVs.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("logo-v3.png");
+
+
+
 	m_pEntityMngr->AddEntity("Minecraft\\Spaceship.obj", "Spaceship");
 	m_pEntityMngr->UsePhysicsSolver();
 	
@@ -67,7 +72,7 @@ void Application::Update(void)
 
 	//decide spawn patterns
 	if ((timer) == 1000) {
-		std::cout << "HERE";
+		//std::cout << "HERE";
 		//loads appropriate file based on random number generation
 		spawnPhase = glm::linearRand(1, 5);
 		LoadEntity(spawnPhase);
@@ -164,7 +169,7 @@ void Application::SpawnEntity(void) {
 	std::cout << "SPAWN ENTITY" << std::endl;
 	char c = fileReader.get();
 	while (fileReader.good()) {
-		std::cout << c;
+		//std::cout << c;
 		c = fileReader.get();
 	}
 	fileReader.close();

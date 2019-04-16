@@ -25,7 +25,7 @@ void Application::DrawGUI(void)
 	NewFrame();
 
 	static ImVec4 v4Color = ImColor(255, 0, 0);
-	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar;
+	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove ;
 	//Main Window
 	if (m_bGUI_Main)
 	{
@@ -50,6 +50,24 @@ void Application::DrawGUI(void)
 			ImGui::Text("Score: %.0d", m_uScore);
 			if (speedup)
 				ImGui::Text("Speeding up");
+		}
+		ImGui::End();
+	}
+	bool showGameUI = true;
+	if (showGameUI)
+	{
+		ImGui::SetNextWindowPos(ImVec2(400, 1), ImGuiSetCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(600, 80), ImGuiSetCond_Always);
+		String sAbout =  "";
+		ImGui::Begin(sAbout.c_str(), (bool*)0,ImVec2(10,10),0.0f,window_flags);
+		{
+			Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
+		
+				
+
+			ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 100, ImGui::GetWindowSize().y);
+			ImGui::Image(tex, windowSizeAdj);
 		}
 		ImGui::End();
 	}

@@ -18,29 +18,29 @@
   Texture.cpp
   TextureManager.cpp
   Window.cpp
-     Creating library D:\Profiles\ekt6170\source\repos\DSA2Project\Z_DELETE\BasicX_d.lib and object D:\Profiles\ekt6170\source\repos\DSA2Project\Z_DELETE\BasicX_d.exp
+     Creating library C:\Users\toxic\Documents\Git\DSA2Project\Z_DELETE\BasicX_d.lib and object C:\Users\toxic\Documents\Git\DSA2Project\Z_DELETE\BasicX_d.exp
   Generating code
   Finished generating code
-  BasicX.vcxproj -> D:\Profiles\ekt6170\source\repos\DSA2Project\Z_DELETE\BasicX_d.dll
+  BasicX.vcxproj -> C:\Users\toxic\Documents\Git\DSA2Project\Z_DELETE\BasicX_d.dll
   Copying files...
           1 file(s) copied.
           1 file(s) copied.
           1 file(s) copied.
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Basic.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Basic.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\BasicColor.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\BasicColor.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Line.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Line.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Minimal.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Minimal.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\MinimalRed.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Simplex.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Simplex.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Skybox.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Skybox.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Text.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Text.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Wireframe.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Basic.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Basic.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\BasicColor.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\BasicColor.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Line.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Line.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Minimal.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Minimal.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\MinimalRed.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Simplex.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Simplex.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Skybox.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Skybox.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Text.fs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Text.vs
+  C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Wireframe.fs
   17 File(s) copied
