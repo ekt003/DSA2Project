@@ -5,6 +5,8 @@ void Application::DrawGUI(void)
 {
 #pragma region Debugging Information
 	//Print info on the screen
+
+	/*
 	uint nEmptyLines = 20;
 	for (uint i = 0; i < nEmptyLines; ++i)
 		m_pMeshMngr->PrintLine("");//Add a line on top
@@ -19,6 +21,8 @@ void Application::DrawGUI(void)
 	//m_pMeshMngr->Print("						");
 	m_pMeshMngr->Print("FPS:");
 	m_pMeshMngr->PrintLine(std::to_string(m_pSystem->GetFPS()), C_RED);
+	*/
+
 #pragma endregion
 
 	//Calculate the window size to know how to draw
@@ -27,6 +31,7 @@ void Application::DrawGUI(void)
 	static ImVec4 v4Color = ImColor(255, 0, 0);
 	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove ;
 	//Main Window
+	//m_bGUI_Main = false;
 	if (m_bGUI_Main)
 	{
 		ImGui::SetNextWindowPos(ImVec2(1, 1), ImGuiSetCond_FirstUseEver);
@@ -48,13 +53,14 @@ void Application::DrawGUI(void)
 			ImGui::Separator();
 			ImGui::Text("Arrows: Apply force to Steve\n");
 			ImGui::Text("Score: %.0d", m_uScore);
+			ImGui::Text("Speed: %.02f", m_fSpeed);
 			if (speedup)
 				ImGui::Text("Speeding up");
 		}
 		ImGui::End();
 	}
-	bool showGameUI = true;
-	if (showGameUI)
+	bool showGameLogo = true;
+	if (showGameLogo)
 	{
 		ImGui::SetNextWindowPos(ImVec2(400, 1), ImGuiSetCond_Always);
 		ImGui::SetNextWindowSize(ImVec2(600, 80), ImGuiSetCond_Always);
@@ -63,11 +69,56 @@ void Application::DrawGUI(void)
 		{
 			Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
 			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
-		
-				
 
 			ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 100, ImGui::GetWindowSize().y);
 			ImGui::Image(tex, windowSizeAdj);
+		}
+		ImGui::End();
+	}
+	bool showGameUI = true;
+	if (showGameUI)
+	{
+		static ImVec4 ScoreColor = ImColor(255, 255, 255);
+
+		ImGui::SetNextWindowPos(ImVec2(1000,10), ImGuiSetCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(300, 100), ImGuiSetCond_Always);
+		/*ImGuiStyle& style = ImGui::GetStyle();
+		style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);*/
+		String sAbout = " Yeet ";
+		ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(100, 100), 0.0f, window_flags);
+		{
+		ImGui::SetWindowFontScale(2);
+			/*Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
+			ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 100, ImGui::GetWindowSize().y);
+			ImGui::Image(tex, windowSizeAdj);*/
+			
+			ImGui::TextColored(ScoreColor,"Score: %.0d", m_uScore);
+			ImGui::TextColored(ScoreColor,"Speed: %.02f", m_fSpeed*2);
+		}
+		ImGui::End();
+	}
+	if (speedup) {
+	//if (showGameUI) {
+		static ImVec4 SpeedupColor = ImColor(255, 255, 255);
+
+		ImGui::SetNextWindowPos(ImVec2(500, 200), ImGuiSetCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiSetCond_Always);
+		/*ImGuiStyle& style = ImGui::GetStyle();
+		style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);*/
+		String sAbout = " score ";
+		ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(300, 300), 0.0f, window_flags);
+		{
+			ImGui::SetWindowFontScale(3);
+			/*
+			
+			Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
+			ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 100, ImGui::GetWindowSize().y);
+			ImGui::Image(tex, windowSizeAdj);
+			
+			*/
+			ImGui::TextColored(SpeedupColor, "Speeding up!");
 		}
 		ImGui::End();
 	}

@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 ﻿  AppClass.cpp
   C22_Physics.vcxproj -> D:\Profiles\ekt6170\source\repos\DSA2Project\Z_DELETE\VoxelDodge_d.exe
+=======
+﻿  AppClassGUI.cpp
+  C22_Physics.vcxproj -> C:\Users\toxic\Documents\Git\DSA2Project\Z_DELETE\VoxelDodge_d.exe
+>>>>>>> Stashed changes
   Copying Shaders...
   D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs
   D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Basic.fs
