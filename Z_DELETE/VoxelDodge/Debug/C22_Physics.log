@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-﻿  AppClassGUI.cpp
-c:\users\toxic\documents\git\dsa2project\voxeldodge\appclassgui.cpp(132): warning C4018: '<': signed/unsigned mismatch
-c:\users\toxic\documents\git\dsa2project\voxeldodge\appclassgui.cpp(134): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
-  C22_Physics.vcxproj -> C:\Users\toxic\Documents\Git\DSA2Project\Z_DELETE\VoxelDodge_d.exe
-=======
-﻿  AppClass.cpp
-  C22_Physics.vcxproj -> D:\Profiles\ekt6170\source\repos\DSA2Project\Z_DELETE\VoxelDodge_d.exe
->>>>>>> master
+﻿  C22_Physics.vcxproj -> C:\Users\toxic\Documents\Git\DSA2Project\Z_DELETE\VoxelDodge_d.exe
   Copying Shaders...
   C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs
   C:\Users\toxic\Documents\Git\DSA2Project\include\Simplex\Shaders\Basic.fs

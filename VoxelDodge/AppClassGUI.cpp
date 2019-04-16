@@ -94,7 +94,7 @@ void Application::DrawGUI(void)
 			ImGui::Image(tex, windowSizeAdj);*/
 			
 			ImGui::TextColored(ScoreColor,"Score: %.0d", m_uScore);
-			ImGui::TextColored(ScoreColor,"Speed: %.02f", m_fSpeed*2);
+			ImGui::TextColored(ScoreColor,"Speed: %.02f", speedStep);
 		}
 		ImGui::End();
 	}
@@ -128,7 +128,7 @@ void Application::DrawGUI(void)
 		Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
 		ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("fastboi.png"));
 
-		std::cout << "Step Count: " << speedStep << std::endl;
+		//std::cout << "Step Count: " << speedStep << std::endl;
 		for (size_t i = 0; i < speedStep+1; i++)
 		{
 			ImGui::SetNextWindowPos(ImVec2(10 + (i * 30), 640), ImGuiSetCond_Always);
