@@ -10,13 +10,15 @@ void Application::InitVariables(void)
 
 	m_pLightMngr->SetPosition(vector3(0.0f, 3.0f, 13.0f), 1); //set the position of first light (0 is reserved for ambient light)
 
-	Simplex::TextureManager::GetInstance()->LoadTexture("ShipUVs.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("ShipUVs.jpg");
 	Simplex::TextureManager::GetInstance()->LoadTexture("logo-v3.png");
 	Simplex::TextureManager::GetInstance()->LoadTexture("fastboi.png");
 
 
 
 	m_pEntityMngr->AddEntity("Minecraft\\Spaceship.obj", "Spaceship");
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube");
+	m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetUniqueID(1));
 	m_pEntityMngr->UsePhysicsSolver();
 	
 	m_Ship = m_pEntityMngr->GetEntity(0);
@@ -76,6 +78,7 @@ void Application::Update(void)
 		//std::cout << "HERE";
 		//loads appropriate file based on random number generation
 		spawnPhase = glm::linearRand(1, 5);
+		spawnPhase = 5;
 		LoadEntity(spawnPhase);
 		//speed up
 		m_fSpeed += 0.05f;
@@ -93,6 +96,7 @@ void Application::Update(void)
 		speedup = false;
 	}
 
+	/*
 	if (timer % 10 == 0) { //creates one entity every 10 update loops
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
 		m_nCubeCount++;
@@ -100,12 +104,12 @@ void Application::Update(void)
 		//sets x position based on random value centered around player
 		//sets y position as zero always
 		//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
-		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand(-30, 30), 0.0f, m_v3CameraPos.z + 100);
+		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand(-50, 50), 0.0f, m_v3CameraPos.z + 100);
 		matrix4 m4Position = glm::translate(v3Position);
 		//setting position of cube
 		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
 
-	}
+	}*/
 	//cube timer, to be done better later
 	timer++;
 	m_uScore++;
@@ -138,7 +142,7 @@ void Application::Update(void)
 }
 
 void Application::LoadEntity(int a_spawnPhase) {
-	switch (spawnPhase) {
+	switch (a_spawnPhase) {
 	case 1: //Left Turn Spawn
 		std::cout << "Phase1" << std::endl;
 		fileReader.open("SpawnFiles/LeftTurn.txt");
@@ -161,25 +165,27 @@ void Application::LoadEntity(int a_spawnPhase) {
 		break;
 	case 5: //Diamond Spawn
 		std::cout << "Phase5" << std::endl;
-		fileReader.open("SpawnFiles/XSpawn.txt");
+		fileReader.open("SpawnFiles/BinaryField.txt");
 		FillMap();
 		break;
 	}
 }
 
 void Application::FillMap(void) {
-	/*
+	
 	uint input = 0;
 	uint row = 0;
 	uint col = 0;
 	//if file reader is not open, don't run anything
 	if (!fileReader.is_open())
 		return;
+	
 	char c = fileReader.get(); //gets next file value
 	while (fileReader.good()) { //keeps going until at the end of the file
 		input = c - '0'; //converts character input into an int
 		if (c == 10) { //this is a new line
 			row++; //increments row
+			col = 0;
 			std::cout << std::endl;
 		}
 		else {
@@ -192,21 +198,21 @@ void Application::FillMap(void) {
 		c = fileReader.get(); //gets next input
 	}
 	fileReader.close(); //closes file reader at the end of the method call
-	SpawnEntity(); //spawns entities based on newly loaded array*/
+	SpawnEntity(); //spawns entities based on newly loaded array
 }
 
 
 void Application::SpawnEntity(void) {
 	vector3 startingPoint = m_Ship->GetPosition();
-
+	startingPoint.x -= 60;
 	//iterating through spawn map
 	for (int i = 0; i < 24; i++) {
 		for (int j = 0; j < 90; j++) {
 			if (spawnMap[i][j] == 1) {
 				m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
 				vector3 position = startingPoint;
-				position.x += (i*1.1);
-				position.z += ((j*1.1) + 100);
+				position.x += (i*5);
+				position.z += ((j*5) + 100);
 
 				matrix4 m4Position = glm::translate(position);
 
