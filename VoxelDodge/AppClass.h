@@ -48,6 +48,7 @@ private:
 	float m_fSpeed = 0.5f;
 	uint m_uScore = 0;
 	bool speedup = false;
+	int speedStep = 0;
 
 	uint m_uRenderCallCount = 0; //count of render calls per frame
 	uint m_uControllerCount = 0; //count of controllers connected

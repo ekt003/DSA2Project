@@ -12,6 +12,7 @@ void Application::InitVariables(void)
 
 	Simplex::TextureManager::GetInstance()->LoadTexture("ShipUVs.png");
 	Simplex::TextureManager::GetInstance()->LoadTexture("logo-v3.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("fastboi.png");
 
 
 
@@ -78,6 +79,7 @@ void Application::Update(void)
 		LoadEntity(spawnPhase);
 		//speed up
 		m_fSpeed += 0.05f;
+		speedStep++;
 		//resets timer
 		timer = 0;
 	}

@@ -122,6 +122,29 @@ void Application::DrawGUI(void)
 		}
 		ImGui::End();
 	}
+	bool showSpeedCounter = true;
+	if (showSpeedCounter)
+	{
+		Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+		ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("fastboi.png"));
+
+		std::cout << "Step Count: " << speedStep << std::endl;
+		for (size_t i = 0; i < speedStep+1; i++)
+		{
+			ImGui::SetNextWindowPos(ImVec2(10 + (i * 30), 640), ImGuiSetCond_Always);
+			ImGui::SetNextWindowSize(ImVec2(60, 70), ImGuiSetCond_Always);
+		
+			String sAbout = "speedcounter-" + i;
+			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(300, 300), 0.0f, window_flags);
+			{
+		
+				ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x-20, ImGui::GetWindowSize().y-10);
+				ImGui::Image(tex, windowSizeAdj);
+
+			}
+			ImGui::End();
+		}
+	}
 
 	// Rendering
 	ImGui::Render();
