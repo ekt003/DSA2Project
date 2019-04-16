@@ -1,36 +1,31 @@
 ﻿  AppClass.cpp
-d:\profiles\ekt6170\source\repos\dsa2project\voxeldodge\appclass.cpp(206): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+z:\igmprofile\desktop\dsaiiproject\dsa2project\voxeldodge\appclass.cpp(208): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-d:\profiles\ekt6170\source\repos\dsa2project\voxeldodge\appclass.cpp(207): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+z:\igmprofile\desktop\dsaiiproject\dsa2project\voxeldodge\appclass.cpp(209): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-  AppClassControls.cpp
-  AppClassGUI.cpp
-  AppClassMain.cpp
-  Main.cpp
-  Generating Code...
-  C22_Physics.vcxproj -> D:\Profiles\ekt6170\source\repos\DSA2Project\Z_DELETE\VoxelDodge_d.exe
+  C22_Physics.vcxproj -> Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\Z_DELETE\VoxelDodge_d.exe
   Copying Shaders...
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Basic.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Basic.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\BasicColor.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\BasicColor.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Line.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Line.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Minimal.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Minimal.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\MinimalRed.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Simplex.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Simplex.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Skybox.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Skybox.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Text.fs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Text.vs
-  D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Wireframe.fs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Basic.fs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Basic.vs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\BasicColor.fs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\BasicColor.vs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Line.fs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Line.vs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Minimal.fs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Minimal.vs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\MinimalRed.fs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Simplex.fs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Simplex.vs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Skybox.fs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Skybox.vs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Text.fs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Text.vs
+  Z:\IGMProfile\Desktop\DSAIIProject\DSA2Project\include\Simplex\Shaders\Wireframe.fs
   17 File(s) copied
