@@ -1,19 +1,4 @@
 ﻿  AppClass.cpp
-d:\profiles\ekt6170\source\repos\dsa2project\voxeldodge\appclass.cpp(206): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-d:\profiles\ekt6170\source\repos\dsa2project\voxeldodge\appclass.cpp(207): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-  AppClassControls.cpp
-  AppClassGUI.cpp
-  AppClassMain.cpp
-  Main.cpp
-  Generating Code...
   C22_Physics.vcxproj -> D:\Profiles\ekt6170\source\repos\DSA2Project\Z_DELETE\VoxelDodge_d.exe
   Copying Shaders...
   D:\Profiles\ekt6170\source\repos\DSA2Project\include\Simplex\Shaders\Basic-Instanced.vs
