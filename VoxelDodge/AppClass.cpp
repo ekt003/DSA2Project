@@ -10,12 +10,14 @@ void Application::InitVariables(void)
 
 	m_pLightMngr->SetPosition(vector3(0.0f, 3.0f, 13.0f), 1); //set the position of first light (0 is reserved for ambient light)
 
-	Simplex::TextureManager::GetInstance()->LoadTexture("ShipUVs.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("ShipUVs.jpg");
 	Simplex::TextureManager::GetInstance()->LoadTexture("logo-v3.png");
 
 
 
 	m_pEntityMngr->AddEntity("Minecraft\\Spaceship.obj", "Spaceship");
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube");
+	m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetUniqueID(1));
 	m_pEntityMngr->UsePhysicsSolver();
 	
 	m_Ship = m_pEntityMngr->GetEntity(0);
