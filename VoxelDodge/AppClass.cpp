@@ -72,33 +72,33 @@ void Application::Update(void)
 	//apply rotation to the camera's up vector (the Y-AXIS)
 	vector3 newUp = vector3(rot * vector4(AXIS_Y, 0));
 
-
 	//Set the camera's position, target, and up vector
 	m_pCameraMngr->SetPositionTargetAndUpward(m_v3CameraPos, m_Ship->GetPosition(), newUp);
-
-
 	//SPAWN CUBES
 
 	//decide spawn patterns
 	if ((timer) == 2000) {
+		//resets timer
+		timer = 0;
 		//loads appropriate file based on random number generation
 		spawnPhase = glm::linearRand(1, 5);
 		LoadEntity(spawnPhase);
 		//speed up
 		m_fSpeed += 0.05f;
 		speedStep++;
-		//resets timer
-		timer = 0;
 	}
 
 	if (timer < 100)
+	{
 		speedup = true;
+	}
 	else
+	{
 		speedup = false;
+	}
 
 
-	if (timer % 6 == 0 && (timer > 800 || timer < 100)) //creates one entity every 10 update loops
-	{ 
+	if (timer % 6 == 0 && (timer > 600 || timer < 100)) { //creates one entity every 10 update loops
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
 		m_nCubeCount++;
 
@@ -109,6 +109,7 @@ void Application::Update(void)
 		matrix4 m4Position = glm::translate(v3Position);
 		//setting position of cube
 		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
+
 	}
 	//cube timer, to be done better later
 	timer++;
@@ -197,15 +198,15 @@ void Application::FillMap(void) {
 
 void Application::SpawnEntity(void) {
 	vector3 startingPoint = m_Ship->GetPosition();
-	startingPoint.x -= 60;
+	startingPoint.x -= 36;
 	//iterating through spawn map
 	for (int i = 0; i < 120; i++) {
 		for (int j = 0; j < 24; j++) {
 			if (spawnMap[i][j] == 1) {
 				m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
 				vector3 position = startingPoint;
-				position.z += (i*5) + 150;
-				position.x += ((j*5));
+				position.z += (i*3) + 150;
+				position.x += ((j*3));
 
 				matrix4 m4Position = glm::translate(position);
 
