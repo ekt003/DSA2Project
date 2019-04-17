@@ -424,9 +424,17 @@ void Application::ProcessKeyboard(void)
 
 #pragma region Character Position
 	float fDelta = m_pSystem->GetDeltaTime(0);
+	float strafeMod = (((float)speedStep) / 4)*3;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		m_pEntityMngr->ApplyForce(vector3(2.0f * fDelta, 0.0f, 0.0f), "Spaceship");
+		if (strafeMod < 1.0)
+		{
+			m_pEntityMngr->ApplyForce(vector3(2.0f * fDelta, 0.0f, 0.0f), "Spaceship");
+		}
+		else
+		{
+			m_pEntityMngr->ApplyForce(vector3(2.0f * fDelta * strafeMod, 0.0f, 0.0f), "Spaceship");
+		}
 		if (m_fDelta >= -10.0f)
 			m_fDelta -= .5f;
 		isRotating = true;
@@ -434,7 +442,14 @@ void Application::ProcessKeyboard(void)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		m_pEntityMngr->ApplyForce(vector3(-2.0f * fDelta, 0.0f, 0.0f), "Spaceship");
+		if (strafeMod < 1.0)
+		{
+			m_pEntityMngr->ApplyForce(vector3(-2.0f * fDelta, 0.0f, 0.0f), "Spaceship");
+		}
+		else
+		{
+			m_pEntityMngr->ApplyForce(vector3(-2.0f * fDelta * strafeMod, 0.0f, 0.0f), "Spaceship");
+		}
 		if (m_fDelta <= 10.0f)
 				m_fDelta += .5f;
 		isRotating = true;
