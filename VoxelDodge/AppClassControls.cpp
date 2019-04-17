@@ -439,6 +439,10 @@ void Application::ProcessKeyboard(void)
 				m_fDelta += .5f;
 		isRotating = true;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::U))
+	{
+		m_bGUI_Main = !m_bGUI_Main;
+	}
 
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
