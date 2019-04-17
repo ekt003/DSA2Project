@@ -82,7 +82,7 @@ void Application::Update(void)
 		spawnPhase = glm::linearRand(1, 5);
 		LoadEntity(spawnPhase);
 		//speed up
-		m_fSpeed += 0.08f;
+		m_fSpeed += 0.05f;
 		speedStep++;
 		//resets timer
 		timer = 0;
@@ -98,7 +98,7 @@ void Application::Update(void)
 	}
 
 
-	if (timer % 6 == 0 && (timer > 500 || timer < 100)) { //creates one entity every 10 update loops
+	if (timer % 6 == 0 && (timer > 800 || timer < 100)) { //creates one entity every 10 update loops
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
 		m_nCubeCount++;
 
@@ -200,8 +200,8 @@ void Application::SpawnEntity(void) {
 	vector3 startingPoint = m_Ship->GetPosition();
 	startingPoint.x -= 60;
 	//iterating through spawn map
-	for (int i = 0; i < 24; i++) {
-		for (int j = 0; j < 90; j++) {
+	for (int i = 0; i < 120; i++) {
+		for (int j = 0; j < 24; j++) {
 			if (spawnMap[i][j] == 1) {
 				m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
 				vector3 position = startingPoint;
@@ -213,9 +213,12 @@ void Application::SpawnEntity(void) {
 				m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
 			}
 
-
 		}
 	}
+
+	//https://stackoverflow.com/questions/2516096/fastest-way-to-zero-out-a-2d-array-in-c
+	//entirely taken from here I take no credit
+	memset(spawnMap, 0, sizeof spawnMap);
 
 }
 
