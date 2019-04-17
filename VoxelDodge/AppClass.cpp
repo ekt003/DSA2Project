@@ -77,7 +77,6 @@ void Application::Update(void)
 
 	//decide spawn patterns
 	if ((timer) == 2000) {
-		//std::cout << "HERE";
 		//loads appropriate file based on random number generation
 		spawnPhase = glm::linearRand(1, 5);
 		LoadEntity(spawnPhase);
@@ -145,27 +144,22 @@ void Application::Update(void)
 void Application::LoadEntity(int a_spawnPhase) {
 	switch (a_spawnPhase) {
 	case 1: //Left Turn Spawn
-		std::cout << "Phase1" << std::endl;
 		fileReader.open("SpawnFiles/LeftTurn.txt");
 		FillMap();
 		break;
 	case 2: //Right Turn Spawn
-		std::cout << "Phase2" << std::endl;
 		fileReader.open("SpawnFiles/RightTurn.txt");
 		FillMap();
 		break;
 	case 3: //X Spawn
-		std::cout << "Phase3" << std::endl;
 		fileReader.open("SpawnFiles/XSpawn.txt");
 		FillMap();
 		break;
 	case 4: //S Spawn
-		std::cout << "Phase4" << std::endl;
 		fileReader.open("SpawnFiles/SSpawn.txt");
 		FillMap();
 		break;
 	case 5: //Diamond Spawn
-		std::cout << "Phase5" << std::endl;
 		fileReader.open("SpawnFiles/DiamondSpawn.txt");
 		FillMap();
 		break;
@@ -187,12 +181,10 @@ void Application::FillMap(void) {
 		if (c == 10) { //this is a new line
 			row++; //increments row
 			col = 0;
-			std::cout << std::endl;
 		}
 		else {
 			if (input == 0 || input == 1) { //gets rid of garbage non binary values
 				spawnMap[row][col] = input; //sets map to read in value
-				std::cout << spawnMap[row][col];
 				col++; //increments column
 			}
 		}
