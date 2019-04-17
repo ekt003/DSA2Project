@@ -72,8 +72,11 @@ void Application::Update(void)
 	//apply rotation to the camera's up vector (the Y-AXIS)
 	vector3 newUp = vector3(rot * vector4(AXIS_Y, 0));
 
+
 	//Set the camera's position, target, and up vector
 	m_pCameraMngr->SetPositionTargetAndUpward(m_v3CameraPos, m_Ship->GetPosition(), newUp);
+
+
 	//SPAWN CUBES
 
 	//decide spawn patterns
@@ -89,16 +92,13 @@ void Application::Update(void)
 	}
 
 	if (timer < 100)
-	{
 		speedup = true;
-	}
 	else
-	{
 		speedup = false;
-	}
 
 
-	if (timer % 6 == 0 && (timer > 800 || timer < 100)) { //creates one entity every 10 update loops
+	if (timer % 6 == 0 && (timer > 800 || timer < 100)) //creates one entity every 10 update loops
+	{ 
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
 		m_nCubeCount++;
 
@@ -109,7 +109,6 @@ void Application::Update(void)
 		matrix4 m4Position = glm::translate(v3Position);
 		//setting position of cube
 		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
-
 	}
 	//cube timer, to be done better later
 	timer++;
