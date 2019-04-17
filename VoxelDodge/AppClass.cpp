@@ -23,6 +23,7 @@ void Application::InitVariables(void)
 	
 	m_Ship = m_pEntityMngr->GetEntity(0);
 
+	speedStep = 0;
 	timer = 2000;
 
 }
