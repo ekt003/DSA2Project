@@ -162,6 +162,7 @@ void Application::LoadEntity(int a_spawnPhase) {
 		break;
 	case 5: //Diamond Spawn
 		fileReader.open("SpawnFiles/DiamondSpawn.txt");
+		timer -= 200;
 		FillMap();
 		break;
 	}
@@ -205,8 +206,8 @@ void Application::SpawnEntity(void) {
 			if (spawnMap[i][j] == 1) {
 				m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
 				vector3 position = startingPoint;
-				position.z += (i*5) + 150;
-				position.x += ((j*5));
+				position.z += (i*3) + 150;
+				position.x += ((j*3));
 
 				matrix4 m4Position = glm::translate(position);
 
