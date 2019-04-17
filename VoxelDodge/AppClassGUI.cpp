@@ -54,6 +54,8 @@ void Application::DrawGUI(void)
 			ImGui::Text("Arrows: Apply force to Steve\n");
 			ImGui::Text("Score: %.0d", m_uScore);
 			ImGui::Text("Speed: %.02f", m_fSpeed);
+			ImGui::TextColored(v4Color, "Speed: %.01d", speedStep);
+
 			if (speedup)
 				ImGui::Text("Speeding up");
 		}
@@ -62,39 +64,50 @@ void Application::DrawGUI(void)
 	bool showGameLogo = true;
 	if (showGameLogo)
 	{
-		ImGui::SetNextWindowPos(ImVec2(400, 1), ImGuiSetCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(600, 80), ImGuiSetCond_Always);
+		ImGui::SetNextWindowPos(ImVec2(510, 0), ImGuiSetCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(300, 50), ImGuiSetCond_Always);
 		String sAbout =  "";
 		ImGui::Begin(sAbout.c_str(), (bool*)0,ImVec2(10,10),0.0f,window_flags);
 		{
 			Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
 			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
 
-			ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 100, ImGui::GetWindowSize().y);
+			ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 50, ImGui::GetWindowSize().y-10);
 			ImGui::Image(tex, windowSizeAdj);
 		}
 		ImGui::End();
 	}
-	bool showGameUI = true;
-	if (showGameUI)
+	bool showSpeedUI = true;
+	if (showSpeedUI)
 	{
 		static ImVec4 ScoreColor = ImColor(255, 255, 255);
 
-		ImGui::SetNextWindowPos(ImVec2(1000,10), ImGuiSetCond_Always);
+		ImGui::SetNextWindowPos(ImVec2(5,590), ImGuiSetCond_Always);
 		ImGui::SetNextWindowSize(ImVec2(300, 100), ImGuiSetCond_Always);
-		/*ImGuiStyle& style = ImGui::GetStyle();
-		style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);*/
-		String sAbout = " Yeet ";
+		
+		String sAbout = "speedtext";
 		ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(100, 100), 0.0f, window_flags);
 		{
 		ImGui::SetWindowFontScale(2);
-			/*Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
-			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
-			ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 100, ImGui::GetWindowSize().y);
-			ImGui::Image(tex, windowSizeAdj);*/
 			
-			ImGui::TextColored(ScoreColor,"Score: %.0d", m_uScore);
-			ImGui::TextColored(ScoreColor,"Speed: %.01d", speedStep);
+			ImGui::TextColored(ScoreColor,"Speed: ");
+		}
+		ImGui::End();
+	}
+	bool showScoreUI = true;
+	if (showScoreUI)
+	{
+		static ImVec4 ScoreColor = ImColor(255, 255, 255);
+
+		ImGui::SetNextWindowPos(ImVec2(560, 45), ImGuiSetCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(300, 100), ImGuiSetCond_Always);
+		String sAbout = "Score";
+		ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(100, 100), 0.0f, window_flags);
+		{
+			ImGui::SetWindowFontScale(2);
+			
+
+			ImGui::TextColored(ScoreColor, "Score: %.0d", m_uScore);
 		}
 		ImGui::End();
 	}
