@@ -26,7 +26,7 @@ private:
 	String m_sProgrammer = "The Bastard Children"; //programmer
 	int m_nCubeCount = 0; //Number of total cubes created;
 
-	uint timer = 0;
+	uint timer;
 	uint spawnPhase = 0;
 	bool spawnRandom = true;
 	std::ifstream fileReader;

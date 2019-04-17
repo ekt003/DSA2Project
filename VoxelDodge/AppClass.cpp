@@ -23,6 +23,8 @@ void Application::InitVariables(void)
 	
 	m_Ship = m_pEntityMngr->GetEntity(0);
 
+	timer = 2000;
+
 }
 void Application::Update(void)
 {
@@ -74,14 +76,13 @@ void Application::Update(void)
 	//SPAWN CUBES
 
 	//decide spawn patterns
-	if ((timer) == 1000) {
+	if ((timer) == 2000) {
 		//std::cout << "HERE";
 		//loads appropriate file based on random number generation
 		spawnPhase = glm::linearRand(1, 5);
-		spawnPhase = 5;
 		LoadEntity(spawnPhase);
 		//speed up
-		m_fSpeed += 0.05f;
+		m_fSpeed += 0.08f;
 		speedStep++;
 		//resets timer
 		timer = 0;
@@ -96,8 +97,8 @@ void Application::Update(void)
 		speedup = false;
 	}
 
-	/*
-	if (timer % 10 == 0) { //creates one entity every 10 update loops
+
+	if (timer % 6 == 0 && (timer > 500 || timer < 100)) { //creates one entity every 10 update loops
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
 		m_nCubeCount++;
 
@@ -109,7 +110,7 @@ void Application::Update(void)
 		//setting position of cube
 		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
 
-	}*/
+	}
 	//cube timer, to be done better later
 	timer++;
 	m_uScore++;
@@ -165,7 +166,7 @@ void Application::LoadEntity(int a_spawnPhase) {
 		break;
 	case 5: //Diamond Spawn
 		std::cout << "Phase5" << std::endl;
-		fileReader.open("SpawnFiles/BinaryField.txt");
+		fileReader.open("SpawnFiles/DiamondSpawn.txt");
 		FillMap();
 		break;
 	}
@@ -211,8 +212,8 @@ void Application::SpawnEntity(void) {
 			if (spawnMap[i][j] == 1) {
 				m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
 				vector3 position = startingPoint;
-				position.x += (i*5);
-				position.z += ((j*5) + 100);
+				position.z += (i*5) + 150;
+				position.x += ((j*5));
 
 				matrix4 m4Position = glm::translate(position);
 
