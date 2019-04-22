@@ -111,7 +111,7 @@ void Application::Update(void)
 		lifeTimer--;
 	}
 
-	if ((timer % (6/((int)m_fSpeed+1))) == 0 && (timer > 600 || timer < 100)) { //creates one entity every 10 update loops
+	if ((timer % (6/((int)m_fSpeed+1))) == 0 && (timer > 600)) { //creates one entity every 10 update loops
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
 		m_nCubeCount++;
 
@@ -222,7 +222,7 @@ void Application::SpawnEntity(void) {
 			if (spawnMap[i][j] == 1) {
 				m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
 				vector3 position = startingPoint;
-				position.z += (i*3) + 150;
+				position.z += (i*3) + 80;
 				position.x += ((j*3));
 
 				matrix4 m4Position = glm::translate(position);
