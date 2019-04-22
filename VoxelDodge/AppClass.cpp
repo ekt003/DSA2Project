@@ -10,11 +10,9 @@ void Application::InitVariables(void)
 
 	m_pLightMngr->SetPosition(vector3(0.0f, 3.0f, 13.0f), 1); //set the position of first light (0 is reserved for ambient light)
 
-	Simplex::TextureManager::GetInstance()->LoadTexture("ShipUVs.jpg");
 	Simplex::TextureManager::GetInstance()->LoadTexture("logo-v3.png");
 	Simplex::TextureManager::GetInstance()->LoadTexture("fastboi.png");
-
-
+	Simplex::TextureManager::GetInstance()->LoadTexture("lifeboi.png");
 
 	m_pEntityMngr->AddEntity("Minecraft\\Spaceship.obj", "Spaceship");
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube");
@@ -25,13 +23,15 @@ void Application::InitVariables(void)
 
 	speedStep = 0;
 	timer = 2000;
+	gameActive = false;
+	//gameActive = true;
 
 }
 void Application::Update(void)
 {
 	//Update the system so it knows how much time has passed since the last call
 	m_pSystem->Update();
-
+	if(gameActive){
 	//Is the ArcBall active?
 	ArcBall();
 
@@ -50,7 +50,6 @@ void Application::Update(void)
 
 	//Handle Collisions
 	m_pEntityMngr->UsePhysicsSolver();
-
 	//Handling counter rotation
 	if (!isRotating)
 	{
@@ -140,6 +139,7 @@ void Application::Update(void)
 			m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetUniqueID(i));
 		}
 	}
+	}//gameActive
 }
 
 void Application::LoadEntity(int a_spawnPhase) {

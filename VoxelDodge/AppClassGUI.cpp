@@ -29,141 +29,223 @@ void Application::DrawGUI(void)
 	NewFrame();
 
 	static ImVec4 v4Color = ImColor(255, 0, 0);
-	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove ;
-	//Main Window
-	//m_bGUI_Main = false;
-	if (m_bGUI_Main)
+	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove;
+	
+	if (!gameActive)
 	{
-		ImGui::SetNextWindowPos(ImVec2(1, 1), ImGuiSetCond_FirstUseEver);
-		ImGui::SetNextWindowSize(ImVec2(340, 60), ImGuiSetCond_FirstUseEver);
-		String sAbout = m_pSystem->GetAppName() + " - About";
-		ImGui::Begin(sAbout.c_str(), (bool*)0, window_flags);
+
+		bool showGameLogo = true;
+		if (showGameLogo)
 		{
-			ImGui::Text("Programmer: \n");
-			ImGui::TextColored(v4Color, m_sProgrammer.c_str());
-			ImGui::Text("FrameRate: %.2f [FPS] -> %.3f [ms/frame]\n",
-				ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
-			ImGui::Separator();
-			ImGui::Text("Control:\n");
-			ImGui::Text("   WASD: Movement\n");
-			ImGui::Text("	 F1: Perspective\n");
-			ImGui::Text("	 F2: Orthographic X\n");
-			ImGui::Text("	 F3: Orthographic Y\n");
-			ImGui::Text("	 F4: Orthographic Z\n");
-			ImGui::Separator();
-			ImGui::Text("Arrows: Apply force to Steve\n");
-			ImGui::Text("Score: %.0d", m_uScore);
-			ImGui::Text("Speed: %.02f", m_fSpeed);
-			ImGui::TextColored(v4Color, "Speed: %.01d", speedStep);
-
-			if (speedup)
-				ImGui::Text("Speeding up");
-		}
-		ImGui::End();
-	}
-	bool showGameLogo = true;
-	if (showGameLogo)
-	{
-		ImGui::SetNextWindowPos(ImVec2(510, 0), ImGuiSetCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(300, 50), ImGuiSetCond_Always);
-		String sAbout =  "";
-		ImGui::Begin(sAbout.c_str(), (bool*)0,ImVec2(10,10),0.0f,window_flags);
-		{
-			Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
-			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
-
-			ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 50, ImGui::GetWindowSize().y-10);
-			ImGui::Image(tex, windowSizeAdj);
-		}
-		ImGui::End();
-	}
-	bool showSpeedUI = true;
-	if (showSpeedUI)
-	{
-		static ImVec4 ScoreColor = ImColor(255, 255, 255);
-
-		ImGui::SetNextWindowPos(ImVec2(5,590), ImGuiSetCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(300, 100), ImGuiSetCond_Always);
-		
-		String sAbout = "speedtext";
-		ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(100, 100), 0.0f, window_flags);
-		{
-		ImGui::SetWindowFontScale(2);
-			
-			ImGui::TextColored(ScoreColor,"Speed: ");
-		}
-		ImGui::End();
-	}
-	bool showScoreUI = true;
-	if (showScoreUI)
-	{
-		static ImVec4 ScoreColor = ImColor(255, 255, 255);
-
-		ImGui::SetNextWindowPos(ImVec2(560, 45), ImGuiSetCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(300, 100), ImGuiSetCond_Always);
-		String sAbout = "Score";
-		ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(100, 100), 0.0f, window_flags);
-		{
-			ImGui::SetWindowFontScale(2);
-			
-
-			ImGui::TextColored(ScoreColor, "Score: %.0d", m_uScore);
-		}
-		ImGui::End();
-	}
-	if (speedup) {
-	//if (showGameUI) {
-		static ImVec4 SpeedupColor = ImColor(255, 255, 255);
-
-		ImGui::SetNextWindowPos(ImVec2(500, 200), ImGuiSetCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiSetCond_Always);
-		/*ImGuiStyle& style = ImGui::GetStyle();
-		style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);*/
-		String sAbout = " score ";
-		ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(300, 300), 0.0f, window_flags);
-		{
-			ImGui::SetWindowFontScale(3);
-			/*
-			
-			Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
-			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
-			ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 100, ImGui::GetWindowSize().y);
-			ImGui::Image(tex, windowSizeAdj);
-			
-			*/
-			ImGui::TextColored(SpeedupColor, "Speeding up!");
-		}
-		ImGui::End();
-	}
-	bool showSpeedCounter = true;
-	if (showSpeedCounter)
-	{
-		Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
-		ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("fastboi.png"));
-
-		//std::cout << "Step Count: " << speedStep << std::endl;
-		for (size_t i = 0; i < speedStep; i++)
-		{
-			ImGui::SetNextWindowPos(ImVec2(10 + (i * 30), 640), ImGuiSetCond_Always);
-			ImGui::SetNextWindowSize(ImVec2(60, 70), ImGuiSetCond_Always);
-		
-			String sAbout = "speedcounter-" + i;
-			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(300, 300), 0.0f, window_flags);
+			ImGui::SetNextWindowPos(ImVec2(255, 100), ImGuiSetCond_Always);
+			ImGui::SetNextWindowSize(ImVec2(800, 120), ImGuiSetCond_Always);
+			String sAbout = "";
+			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(10, 10), 0.0f, window_flags);
 			{
-		
-				ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x-20, ImGui::GetWindowSize().y-10);
-				ImGui::Image(tex, windowSizeAdj);
+				Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+				ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
 
+				ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 50, ImGui::GetWindowSize().y - 10);
+				ImGui::Image(tex, windowSizeAdj);
+			}
+			ImGui::End();
+		}
+		bool showInfoUI = true;
+		if (showInfoUI)
+		{
+			static ImVec4 InfoColor = ImColor(255, 255, 255);
+
+			ImGui::SetNextWindowPos(ImVec2(300, 250), ImGuiSetCond_Always);
+			ImGui::SetNextWindowSize(ImVec2(700, 700), ImGuiSetCond_Always);
+			String sAbout = "Info";
+			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(700, 700), 0.0f, window_flags);
+			{
+				ImGui::SetWindowFontScale(2);
+
+
+				ImGui::TextColored(InfoColor, "Welcome to deep space cadet! We need your help!");
 			}
 			ImGui::End();
 		}
 	}
+	if (gameActive)
+	{
+	
+		m_bGUI_Main = false;
+		if (m_bGUI_Main)
+		{
+			ImGui::SetNextWindowPos(ImVec2(1, 1), ImGuiSetCond_FirstUseEver);
+			ImGui::SetNextWindowSize(ImVec2(340, 60), ImGuiSetCond_FirstUseEver);
+			String sAbout = m_pSystem->GetAppName() + " - About";
+			ImGui::Begin(sAbout.c_str(), (bool*)0, window_flags);
+			{
+				ImGui::Text("Programmer: \n");
+				ImGui::TextColored(v4Color, m_sProgrammer.c_str());
+				ImGui::Text("FrameRate: %.2f [FPS] -> %.3f [ms/frame]\n",
+					ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
+				ImGui::Separator();
+				ImGui::Text("Control:\n");
+				ImGui::Text("   WASD: Movement\n");
+				ImGui::Text("	 F1: Perspective\n");
+				ImGui::Text("	 F2: Orthographic X\n");
+				ImGui::Text("	 F3: Orthographic Y\n");
+				ImGui::Text("	 F4: Orthographic Z\n");
+				ImGui::Separator();
+				ImGui::Text("Arrows: Apply force to Steve\n");
+				ImGui::Text("Score: %.0d", m_uScore);
+				ImGui::Text("Speed: %.02f", m_fSpeed);
+				ImGui::TextColored(v4Color, "Speed: %.01d", speedStep);
 
-	// Rendering
-	ImGui::Render();
+				if (speedup)
+					ImGui::Text("Speeding up");
+			}
+			ImGui::End();
+		}
+		bool showGameLogo = true;
+		if (showGameLogo)
+		{
+			ImGui::SetNextWindowPos(ImVec2(510, 0), ImGuiSetCond_Always);
+			ImGui::SetNextWindowSize(ImVec2(300, 50), ImGuiSetCond_Always);
+			String sAbout =  "";
+			ImGui::Begin(sAbout.c_str(), (bool*)0,ImVec2(10,10),0.0f,window_flags);
+			{
+				Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+				ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
 
-	ImDrawData* pData = ImGui::GetDrawData();
-	RenderDrawLists(pData);
+				ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 50, ImGui::GetWindowSize().y-10);
+				ImGui::Image(tex, windowSizeAdj);
+			}
+			ImGui::End();
+		}
+		bool showSpeedUI = true;
+		if (showSpeedUI)
+		{
+			static ImVec4 ScoreColor = ImColor(255, 255, 255);
+
+			ImGui::SetNextWindowPos(ImVec2(5,590), ImGuiSetCond_Always);
+			ImGui::SetNextWindowSize(ImVec2(300, 100), ImGuiSetCond_Always);
+		
+			String sAbout = "speedtext";
+			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(100, 100), 0.0f, window_flags);
+			{
+			ImGui::SetWindowFontScale(2);
+			
+				ImGui::TextColored(ScoreColor,"Speed: ");
+			}
+			ImGui::End();
+		}
+	
+		bool showScoreUI = true;
+		if (showScoreUI)
+		{
+			static ImVec4 ScoreColor = ImColor(255, 255, 255);
+
+			ImGui::SetNextWindowPos(ImVec2(560, 45), ImGuiSetCond_Always);
+			ImGui::SetNextWindowSize(ImVec2(300, 100), ImGuiSetCond_Always);
+			String sAbout = "Score";
+			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(100, 100), 0.0f, window_flags);
+			{
+				ImGui::SetWindowFontScale(2);
+			
+
+				ImGui::TextColored(ScoreColor, "Score: %.0d", m_uScore);
+			}
+			ImGui::End();
+		}
+		if (speedup) {
+		//if (showGameUI) {
+			static ImVec4 SpeedupColor = ImColor(255, 255, 255);
+
+			ImGui::SetNextWindowPos(ImVec2(500, 200), ImGuiSetCond_Always);
+			ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiSetCond_Always);
+			/*ImGuiStyle& style = ImGui::GetStyle();
+			style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);*/
+			String sAbout = " score ";
+			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(300, 300), 0.0f, window_flags);
+			{
+				ImGui::SetWindowFontScale(3);
+				/*
+			
+				Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+				ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
+				ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 100, ImGui::GetWindowSize().y);
+				ImGui::Image(tex, windowSizeAdj);
+			
+				*/
+				ImGui::TextColored(SpeedupColor, "Speeding up!");
+			}
+			ImGui::End();
+		}
+		bool showSpeedCounter = true;
+		if (showSpeedCounter)
+		{
+			Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("fastboi.png"));
+
+			//std::cout << "Step Count: " << speedStep << std::endl;
+			for (size_t i = 0; i < speedStep; i++)
+			{
+				ImGui::SetNextWindowPos(ImVec2(10 + (i * 30), 640), ImGuiSetCond_Always);
+				ImGui::SetNextWindowSize(ImVec2(60, 70), ImGuiSetCond_Always);
+		
+				String sAbout = "speedcounter-" + i;
+				ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(300, 300), 0.0f, window_flags);
+				{
+		
+					ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x-20, ImGui::GetWindowSize().y-10);
+					ImGui::Image(tex, windowSizeAdj);
+
+				}
+				ImGui::End();
+			}
+		}
+		bool showLifeUI = true;
+		if (showLifeUI)
+		{
+			static ImVec4 LifeColor = ImColor(255, 255, 255);
+
+			//if(lives < 2){
+			//	LifeColor = ImColor(255,0,0);
+			//}
+
+			ImGui::SetNextWindowPos(ImVec2(1000, 590), ImGuiSetCond_Always);
+			ImGui::SetNextWindowSize(ImVec2(300, 100), ImGuiSetCond_Always);
+
+			String sAbout = "lifetext";
+			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(100, 100), 0.0f, window_flags);
+			{
+				ImGui::SetWindowFontScale(2);
+
+				ImGui::TextColored(LifeColor, "Life: ");
+			}
+			ImGui::End();
+			//icons
+			Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("lifeboi.png"));
+
+			for (size_t i = 0; i < 3; i++)//replace 3 with lives variable
+			{
+				ImGui::SetNextWindowPos(ImVec2(1000 + (i * 70), 640), ImGuiSetCond_Always);
+				ImGui::SetNextWindowSize(ImVec2(80, 70), ImGuiSetCond_Always);
+
+				String sAbout = "lifecounter-" + i;
+				ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(300, 300), 0.0f, window_flags);
+				{
+
+					ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 20, ImGui::GetWindowSize().y - 10);
+					ImGui::Image(tex, windowSizeAdj);
+
+				}
+				ImGui::End();
+			}
+		}
+	}//gameactive
+
+		// Rendering
+		ImGui::Render();
+
+		ImDrawData* pData = ImGui::GetDrawData();
+		RenderDrawLists(pData);
 }
 void Application::RenderDrawLists(ImDrawData* draw_data)
 {
