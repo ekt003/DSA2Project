@@ -71,7 +71,7 @@ void Application::DrawGUI(void)
 	if (gameActive)
 	{
 	
-		m_bGUI_Main = false;
+		//m_bGUI_Main = false;
 		if (m_bGUI_Main)
 		{
 			ImGui::SetNextWindowPos(ImVec2(1, 1), ImGuiSetCond_FirstUseEver);
@@ -95,6 +95,7 @@ void Application::DrawGUI(void)
 				ImGui::Text("Score: %.0d", m_uScore);
 				ImGui::Text("Speed: %.02f", m_fSpeed);
 				ImGui::TextColored(v4Color, "Speed: %.01d", speedStep);
+				ImGui::TextColored(v4Color, "Lives: %.01d", m_uLives);
 
 				if (speedup)
 					ImGui::Text("Speeding up");
@@ -204,9 +205,9 @@ void Application::DrawGUI(void)
 		{
 			static ImVec4 LifeColor = ImColor(255, 255, 255);
 
-			//if(lives < 2){
-			//	LifeColor = ImColor(255,0,0);
-			//}
+			if(m_uLives < 2){
+				LifeColor = ImColor(255,0,0);
+			}
 
 			ImGui::SetNextWindowPos(ImVec2(1000, 590), ImGuiSetCond_Always);
 			ImGui::SetNextWindowSize(ImVec2(300, 100), ImGuiSetCond_Always);
@@ -222,22 +223,34 @@ void Application::DrawGUI(void)
 			//icons
 			Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
 			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("lifeboi.png"));
+			
+			if ((m_uLives) <= 0) {
+				lifeExit = false;
+				std::cout << "AHHHHHHHHHHHHHHHHHHHHH = " << m_uLives << std::endl;
 
-			for (size_t i = 0; i < 3; i++)//replace 3 with lives variable
-			{
-				ImGui::SetNextWindowPos(ImVec2(1000 + (i * 70), 640), ImGuiSetCond_Always);
-				ImGui::SetNextWindowSize(ImVec2(80, 70), ImGuiSetCond_Always);
-
-				String sAbout = "lifecounter-" + i;
-				ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(300, 300), 0.0f, window_flags);
-				{
-
-					ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 20, ImGui::GetWindowSize().y - 10);
-					ImGui::Image(tex, windowSizeAdj);
-
-				}
-				ImGui::End();
 			}
+			if (m_uLives > 0 && lifeExit)
+			{
+				
+				for (size_t i = 0; i < m_uLives; i++)//replace 3 with lives variable
+				{
+					ImGui::SetNextWindowPos(ImVec2(1000 + (i * 70), 640), ImGuiSetCond_Always);
+					ImGui::SetNextWindowSize(ImVec2(80, 70), ImGuiSetCond_Always);
+
+					String sAbout = "lifecounter-" + i;
+					ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(300, 300), 0.0f, window_flags);
+					{
+
+						ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 20, ImGui::GetWindowSize().y - 10);
+						ImGui::Image(tex, windowSizeAdj);
+
+					}
+					
+					ImGui::End();
+				}
+				
+			}
+			std::cout << "LIVES = " << m_uLives<< std::endl;
 		}
 	}//gameactive
 

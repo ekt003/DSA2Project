@@ -83,6 +83,7 @@ private:
 	sf::Sound m_sound; //sound effect
 	sf::Music m_soundBGM; //background music
 	bool gameActive;
+	bool lifeExit = true;
 
 public:
 #pragma region Constructor / Run / Destructor
