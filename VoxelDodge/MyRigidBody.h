@@ -15,6 +15,7 @@ class MyRigidBody
 {
 public:
 	typedef MyRigidBody* PRigidBody; //MyEntity Pointer
+	
 
 protected:
 	MeshManager* m_pMeshMngr = nullptr; //for displaying the Rigid Body
@@ -22,6 +23,7 @@ protected:
 	bool m_bVisibleBS = false; //Visibility of bounding sphere
 	bool m_bVisibleOBB = true; //Visibility of Oriented bounding box
 	bool m_bVisibleARBB = true; //Visibility of axis (Re)aligned bounding box
+	bool iBeCollide = false;
 
 	float m_fRadius = 0.0f; //Radius
 
@@ -111,6 +113,8 @@ public:
 	OUTPUT: are they colliding?
 	*/
 	bool IsColliding(MyRigidBody* const other);
+
+	bool GetIBeCollide();
 #pragma region Accessors
 	/*
 	Usage: Gets visibility of bounding sphere
