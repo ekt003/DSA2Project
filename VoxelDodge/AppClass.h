@@ -27,6 +27,7 @@ private:
 	int m_nCubeCount = 0; //Number of total cubes created;
 
 	uint timer;
+	uint lifeTimer = 0;
 	uint spawnPhase = 0;
 	bool spawnRandom = true;
 	std::ifstream fileReader;
@@ -49,6 +50,7 @@ private:
 	uint m_uScore = 0;
 	bool speedup = false;
 	int speedStep = 0;
+	uint m_uLives = 3;
 
 	uint m_uRenderCallCount = 0; //count of render calls per frame
 	uint m_uControllerCount = 0; //count of controllers connected

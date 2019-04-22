@@ -53,6 +53,7 @@ void Application::DrawGUI(void)
 			ImGui::Separator();
 			ImGui::Text("Arrows: Apply force to Steve\n");
 			ImGui::Text("Score: %.0d", m_uScore);
+			ImGui::Text("Lives: %.0d", m_uLives);
 			ImGui::Text("Speed: %.02f", m_fSpeed);
 			ImGui::TextColored(v4Color, "Speed: %.01d", speedStep);
 

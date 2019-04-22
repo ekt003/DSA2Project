@@ -97,6 +97,19 @@ void Application::Update(void)
 		speedup = false;
 	}
 
+	if (lifeTimer == 0)
+	{
+		if (m_pEntityMngr->GetEntity(0)->GetRigidBody()->GetIBeCollide() == true)
+		{
+			lifeTimer = 10;
+			m_uLives--;
+		}
+	}
+	
+	if (lifeTimer != 0)
+	{
+		lifeTimer--;
+	}
 
 	if (timer % 6 == 0 && (timer > 600 || timer < 100)) { //creates one entity every 10 update loops
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
