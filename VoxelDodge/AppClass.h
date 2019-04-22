@@ -15,6 +15,7 @@ Date: 2017/06
 
 #include<vector>
 #include <fstream>
+#include <thread>
 
 namespace Simplex
 {
@@ -31,6 +32,7 @@ private:
 	uint spawnPhase = 0;
 	bool spawnRandom = true;
 	std::ifstream fileReader;
+	std::thread spawnThread;
 
 	//patern for random spawning
 	int spawnMap[120][24] = {};

@@ -82,6 +82,7 @@ void Application::Update(void)
 		timer = 0;
 		//loads appropriate file based on random number generation
 		spawnPhase = glm::linearRand(1, 5);
+		//spawnThread = std::thread(&this::LoadEntity, spawnPhase);
 		LoadEntity(spawnPhase);
 		//speed up
 		m_fSpeed += 0.05f;
@@ -111,14 +112,14 @@ void Application::Update(void)
 		lifeTimer--;
 	}
 
-	if (timer % 6 == 0 && (timer > 600 || timer < 100)) { //creates one entity every 10 update loops
+	if ((timer % (6/((int)m_fSpeed+1))) == 0 && (timer > 600 || timer < 100)) { //creates one entity every 10 update loops
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
 		m_nCubeCount++;
 
 		//sets x position based on random value centered around player
 		//sets y position as zero always
 		//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
-		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand(-50, 50), 0.0f, m_v3CameraPos.z + 100);
+		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand((-5*(m_fSpeed*20)), (10*(m_fSpeed*20))), 0.0f, m_v3CameraPos.z + 100);
 		matrix4 m4Position = glm::translate(v3Position);
 		//setting position of cube
 		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
@@ -153,6 +154,8 @@ void Application::Update(void)
 			m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetUniqueID(i));
 		}
 	}
+
+	//spawnThread.join();
 }
 
 void Application::LoadEntity(int a_spawnPhase) {
