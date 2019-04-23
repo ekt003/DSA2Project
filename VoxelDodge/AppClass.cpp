@@ -49,6 +49,9 @@ void Application::Update(void)
 	m_v3CameraPos.y += 3.0f;
 
 	//Handle Collisions
+	
+
+	//Oct tree go here.
 	m_pEntityMngr->UsePhysicsSolver();
 	//Handling counter rotation
 	if (!isRotating)
@@ -65,6 +68,9 @@ void Application::Update(void)
 		}
 	}
 
+	//Generate first Oct Tree
+	m_pRoot = new MyOctant(1, 5);
+
 	//Calculate rotation matrix of the up vector for the camera
 	glm::mat4 rot = glm::rotate(IDENTITY_M4, glm::radians(m_fDelta), AXIS_Z);
 
@@ -77,6 +83,8 @@ void Application::Update(void)
 
 	//decide spawn patterns
 	if ((timer) == 2000) {
+
+		//Draw Oct Tree
 		//resets timer
 		timer = 0;
 		//loads appropriate file based on random number generation
@@ -155,6 +163,9 @@ void Application::Update(void)
 	}
 	//spawnThread.join();
 	
+	//Display Oct Tree
+	m_pRoot->Display();
+
 	}//gameActive
 
 }
