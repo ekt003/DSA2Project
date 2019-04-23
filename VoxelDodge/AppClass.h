@@ -36,6 +36,8 @@ private:
 	uint lifeTimer = 0;
 	uint spawnPhase = 0;
 	bool spawnRandom = true;
+	bool octMode = false; //Boolean to determine whether or not our oct tree is working;
+	bool octEnabled = true; //Boolean to determin whether or not our oct tree is active;
 	std::ifstream fileReader;
 	std::thread spawnThread;
 
