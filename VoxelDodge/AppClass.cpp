@@ -13,6 +13,10 @@ void Application::InitVariables(void)
 	Simplex::TextureManager::GetInstance()->LoadTexture("logo-v3.png");
 	Simplex::TextureManager::GetInstance()->LoadTexture("fastboi.png");
 	Simplex::TextureManager::GetInstance()->LoadTexture("lifeboi.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("enter.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("button-o.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("button-u.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("arrows.png");
 
 	m_pEntityMngr->AddEntity("Minecraft\\Spaceship.obj", "Spaceship");
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube");

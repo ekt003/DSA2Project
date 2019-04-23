@@ -34,15 +34,16 @@ void Application::DrawGUI(void)
 	if (!gameActive)
 	{
 
+		Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+
 		bool showGameLogo = true;
 		if (showGameLogo)
 		{
-			ImGui::SetNextWindowPos(ImVec2(255, 100), ImGuiSetCond_Always);
+			ImGui::SetNextWindowPos(ImVec2(255, 50), ImGuiSetCond_Always);
 			ImGui::SetNextWindowSize(ImVec2(800, 120), ImGuiSetCond_Always);
 			String sAbout = "";
 			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(10, 10), 0.0f, window_flags);
 			{
-				Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
 				ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
 
 				ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 50, ImGui::GetWindowSize().y - 10);
@@ -55,15 +56,80 @@ void Application::DrawGUI(void)
 		{
 			static ImVec4 InfoColor = ImColor(255, 255, 255);
 
-			ImGui::SetNextWindowPos(ImVec2(300, 250), ImGuiSetCond_Always);
-			ImGui::SetNextWindowSize(ImVec2(700, 700), ImGuiSetCond_Always);
+			ImGui::SetNextWindowPos(ImVec2(250, 200), ImGuiSetCond_Always);
+			ImGui::SetNextWindowSize(ImVec2(800, 700), ImGuiSetCond_Always);
+			/*ImGui::PushStyleVar(ImGuiStyleVar TextAlign,ImVec2(.5f, .5f));
+			ImGui::PopStyleVar();*/
+			ImTextureID imgArrows = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("arrows.png"));
+			ImTextureID imgButtonO = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("button-o.png"));
+			ImTextureID imgButtonU = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("button-u.png"));
+			ImTextureID imgEnter = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("enter.png"));
+
+			
+
 			String sAbout = "Info";
-			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(700, 700), 0.0f, window_flags);
+			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(800, 700), 0.0f, window_flags);
 			{
 				ImGui::SetWindowFontScale(2);
 
 
 				ImGui::TextColored(InfoColor, "Welcome to deep space cadet! We need your help!");
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Separator();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+
+				ImGui::TextColored(InfoColor, "Use the Arrow keys to navigate the space debris");
+				ImGui::Spacing();
+				ImVec2 windowSizeAdj = ImVec2(100, 40);
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Image(imgArrows, windowSizeAdj);
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Separator();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::TextColored(InfoColor, "Now get out there! Good luck cadet!");
+				ImGui::TextColored(InfoColor, "But be careful! Your shield generator only has 3 charges");
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Separator();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::TextColored(InfoColor, "Press 'Enter' to start!");
+				windowSizeAdj = ImVec2(100, 60);
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::Image(imgEnter, windowSizeAdj);
 			}
 			ImGui::End();
 		}
@@ -226,7 +292,7 @@ void Application::DrawGUI(void)
 			
 			if ((m_uLives) <= 0) {
 				lifeExit = false;
-				std::cout << "AHHHHHHHHHHHHHHHHHHHHH = " << m_uLives << std::endl;
+				//std::cout << "AHHHHHHHHHHHHHHHHHHHHH = " << m_uLives << std::endl;
 
 			}
 			if (m_uLives > 0 && lifeExit)
@@ -250,7 +316,7 @@ void Application::DrawGUI(void)
 				}
 				
 			}
-			std::cout << "LIVES = " << m_uLives<< std::endl;
+			//std::cout << "LIVES = " << m_uLives<< std::endl;
 		}
 	}//gameactive
 
