@@ -458,6 +458,10 @@ void Application::ProcessKeyboard(void)
 	{
 		m_bGUI_Main = !m_bGUI_Main;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	{
+		gameActive = true;
+	}
 
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{

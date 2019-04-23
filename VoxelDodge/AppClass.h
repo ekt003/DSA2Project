@@ -15,6 +15,7 @@ Date: 2017/06
 
 #include<vector>
 #include <fstream>
+#include <thread>
 
 namespace Simplex
 {
@@ -27,9 +28,11 @@ private:
 	int m_nCubeCount = 0; //Number of total cubes created;
 
 	uint timer;
+	uint lifeTimer = 0;
 	uint spawnPhase = 0;
 	bool spawnRandom = true;
 	std::ifstream fileReader;
+	std::thread spawnThread;
 
 	//patern for random spawning
 	int spawnMap[120][24] = {};
@@ -49,6 +52,7 @@ private:
 	uint m_uScore = 0;
 	bool speedup = false;
 	int speedStep = 0;
+	uint m_uLives = 3;
 
 	uint m_uRenderCallCount = 0; //count of render calls per frame
 	uint m_uControllerCount = 0; //count of controllers connected
@@ -78,6 +82,8 @@ private:
 	sf::SoundBuffer m_soundBuffer; //buffer to play sound from
 	sf::Sound m_sound; //sound effect
 	sf::Music m_soundBGM; //background music
+	bool gameActive;
+	bool lifeExit = true;
 
 public:
 #pragma region Constructor / Run / Destructor

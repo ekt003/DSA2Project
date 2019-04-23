@@ -10,11 +10,9 @@ void Application::InitVariables(void)
 
 	m_pLightMngr->SetPosition(vector3(0.0f, 3.0f, 13.0f), 1); //set the position of first light (0 is reserved for ambient light)
 
-	Simplex::TextureManager::GetInstance()->LoadTexture("ShipUVs.jpg");
 	Simplex::TextureManager::GetInstance()->LoadTexture("logo-v3.png");
 	Simplex::TextureManager::GetInstance()->LoadTexture("fastboi.png");
-
-
+	Simplex::TextureManager::GetInstance()->LoadTexture("lifeboi.png");
 
 	m_pEntityMngr->AddEntity("Minecraft\\Spaceship.obj", "Spaceship");
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube");
@@ -25,13 +23,15 @@ void Application::InitVariables(void)
 
 	speedStep = 0;
 	timer = 2000;
+	gameActive = false;
+	//gameActive = true;
 
 }
 void Application::Update(void)
 {
 	//Update the system so it knows how much time has passed since the last call
 	m_pSystem->Update();
-
+	if(gameActive){
 	//Is the ArcBall active?
 	ArcBall();
 
@@ -50,7 +50,6 @@ void Application::Update(void)
 
 	//Handle Collisions
 	m_pEntityMngr->UsePhysicsSolver();
-
 	//Handling counter rotation
 	if (!isRotating)
 	{
@@ -72,11 +71,8 @@ void Application::Update(void)
 	//apply rotation to the camera's up vector (the Y-AXIS)
 	vector3 newUp = vector3(rot * vector4(AXIS_Y, 0));
 
-
 	//Set the camera's position, target, and up vector
 	m_pCameraMngr->SetPositionTargetAndUpward(m_v3CameraPos, m_Ship->GetPosition(), newUp);
-
-
 	//SPAWN CUBES
 
 	//decide spawn patterns
@@ -85,6 +81,7 @@ void Application::Update(void)
 		timer = 0;
 		//loads appropriate file based on random number generation
 		spawnPhase = glm::linearRand(1, 5);
+		//spawnThread = std::thread(&this::LoadEntity, spawnPhase);
 		LoadEntity(spawnPhase);
 		//speed up
 		m_fSpeed += 0.05f;
@@ -92,22 +89,40 @@ void Application::Update(void)
 	}
 
 	if (timer < 100)
+	{
 		speedup = true;
+	}
 	else
+	{
 		speedup = false;
+	}
 
+	if (lifeTimer == 0)
+	{
+		if (m_pEntityMngr->GetEntity(0)->GetRigidBody()->GetIBeCollide() == true)
+		{
+			lifeTimer = 10;
+			m_uLives--;
+		}
+	}
+	
+	if (lifeTimer != 0)
+	{
+		lifeTimer--;
+	}
 
-	if (timer % 6 == 0 && (timer > 800 || timer < 100)) { //creates one entity every 10 update loops
+	if ((timer % (6/((int)m_fSpeed+1))) == 0 && (timer > 600)) { //creates one entity every 10 update loops
 		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
 		m_nCubeCount++;
 
 		//sets x position based on random value centered around player
 		//sets y position as zero always
 		//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
-		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand(-50, 50), 0.0f, m_v3CameraPos.z + 100);
+		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand((-5*(m_fSpeed*20)), (10*(m_fSpeed*20))), 0.0f, m_v3CameraPos.z + 100);
 		matrix4 m4Position = glm::translate(v3Position);
 		//setting position of cube
 		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
+
 	}
 	//cube timer, to be done better later
 	timer++;
@@ -138,6 +153,10 @@ void Application::Update(void)
 			m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetUniqueID(i));
 		}
 	}
+	//spawnThread.join();
+	
+	}//gameActive
+
 }
 
 void Application::LoadEntity(int a_spawnPhase) {
@@ -203,7 +222,7 @@ void Application::SpawnEntity(void) {
 			if (spawnMap[i][j] == 1) {
 				m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
 				vector3 position = startingPoint;
-				position.z += (i*3) + 150;
+				position.z += (i*3) + 80;
 				position.x += ((j*3));
 
 				matrix4 m4Position = glm::translate(position);

@@ -84,6 +84,7 @@ vector3 MyRigidBody::GetHalfWidth(void) { return m_v3HalfWidth; }
 matrix4 MyRigidBody::GetModelMatrix(void) { return m_m4ToWorld; }
 MyRigidBody::PRigidBody* MyRigidBody::GetColliderArray(void) { return m_CollidingArray; }
 uint MyRigidBody::GetCollidingCount(void) { return m_uCollidingCount; }
+bool MyRigidBody::GetIBeCollide(void) { return iBeCollide; }
 void MyRigidBody::SetModelMatrix(matrix4 a_m4ModelMatrix)
 {
 	//to save some calculations if the model matrix is the same there is nothing to do here
@@ -225,7 +226,7 @@ void MyRigidBody::AddCollisionWith(MyRigidBody* other)
 		check if the object is already in the colliding set, if
 		the object is already there return with no changes
 	*/
-
+	iBeCollide = true;
 	//insert the entry
 	PRigidBody* pTemp;
 	pTemp = new PRigidBody[m_uCollidingCount + 1];
@@ -244,7 +245,10 @@ void MyRigidBody::RemoveCollisionWith(MyRigidBody* other)
 {
 	//if there are no dimensions return
 	if (m_uCollidingCount == 0)
+	{
+		iBeCollide = false;
 		return;
+	}
 
 	//we look one by one if its the one wanted
 	for (uint i = 0; i < m_uCollidingCount; i++)
