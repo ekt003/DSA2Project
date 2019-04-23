@@ -13,6 +13,10 @@ void Application::InitVariables(void)
 	Simplex::TextureManager::GetInstance()->LoadTexture("logo-v3.png");
 	Simplex::TextureManager::GetInstance()->LoadTexture("fastboi.png");
 	Simplex::TextureManager::GetInstance()->LoadTexture("lifeboi.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("enter.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("button-o.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("button-u.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("arrows.png");
 
 	m_pEntityMngr->AddEntity("Minecraft\\Spaceship.obj", "Spaceship");
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube");
@@ -26,6 +30,10 @@ void Application::InitVariables(void)
 	timer = 2000;
 	gameActive = false;
 	//gameActive = true;
+
+	//loading in high scores from a file
+	std::vector<uint> highScores = std::vector<uint>();
+	LoadHighScores();
 
 }
 void Application::Update(void)
@@ -155,14 +163,13 @@ void Application::Update(void)
 			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
 			m_nCubeCount++;
 
-			//sets x position based on random value centered around player
-			//sets y position as zero always
-			//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
-
-			vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand((-5 * (m_fSpeed * 20)), (10 * (m_fSpeed * 20))), 0.0f, m_v3CameraPos.z + 100);
-			matrix4 m4Position = glm::translate(v3Position);
-			//setting position of cube
-			m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
+		//sets x position based on random value centered around player
+		//sets y position as zero always
+		//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
+		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand((-10*(m_fSpeed*20)), (10*(m_fSpeed*20))), 0.0f, m_v3CameraPos.z + 100);
+		matrix4 m4Position = glm::translate(v3Position);
+		//setting position of cube
+		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
 
 			cubesSpawned++;
 
@@ -320,4 +327,53 @@ void Application::Release(void)
 
 	//release GUI
 	ShutdownGUI();
+}
+
+void Application::LoadHighScores(void) {
+	//opens high score file
+	fileReader.open("HighScores/highScores.txt");
+
+	highScores.clear();
+
+	//checks for successful loading
+	if (fileReader.is_open()) {
+		//read in each high score value
+
+		//store it in the high scores vector
+
+
+
+		//closes file reader
+		fileReader.close();
+	}
+
+}
+
+
+void Application::SaveHighScore(uint a_highScore) {
+	//if first high score, store it
+	if (highScores.size() == 0) {
+		highScores.push_back(a_highScore);
+	}
+	else {
+		//loops through high score vector and stores high score in proper position
+		for (int i = 0; i < highScores.size(); i++) {
+			//found spot where it should be added
+			if (a_highScore > highScores[i]) {
+				//highScores.insert(highScores.begin+i, a_highScore); //inserts high score in proper position
+			}
+		}
+	}
+	
+	//opens high score file
+	fileWriter.open("HighScores/highScores.txt");
+
+	//checks for successful loading
+	if (fileWriter.is_open()) {
+		//writes new vector to the file
+
+
+		//closes file reader
+		fileWriter.close();
+	}
 }
