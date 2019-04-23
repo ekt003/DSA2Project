@@ -32,7 +32,10 @@ private:
 	uint spawnPhase = 0;
 	bool spawnRandom = true;
 	std::ifstream fileReader;
+	std::ofstream fileWriter;
 	std::thread spawnThread;
+
+	std::vector<uint> highScores;
 
 	//patern for random spawning
 	int spawnMap[120][24] = {};
@@ -192,6 +195,20 @@ private:
 	OUTPUT: ---
 	*/
 	void SpawnEntity(void);
+
+	/*
+	USAGE: Loads in encrypted high scores
+	ARGUMENTS: ---
+	OUTPUT: ---
+	*/
+	void LoadHighScores(void);
+
+	/*
+	USAGE: Stores new high score its proper file spot
+	ARGUMENTS: ---
+	OUTPUT: ---
+	*/
+	void SaveHighScore(uint a_highScore);
 
 	/*
 	USAGE: Displays the scene
