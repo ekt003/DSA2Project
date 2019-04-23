@@ -12,6 +12,7 @@ Date: 2017/06
 
 #include "MyEntityManager.h"
 #include "MyEntity.h"
+#include "MyOctantExample.h"
 
 #include<vector>
 #include <fstream>
@@ -26,6 +27,10 @@ class Application
 private:
 	String m_sProgrammer = "The Bastard Children"; //programmer
 	int m_nCubeCount = 0; //Number of total cubes created;
+
+	//Oct Tree
+
+	MyOctant* m_pRoot;
 
 	uint timer;
 	uint lifeTimer = 0;
