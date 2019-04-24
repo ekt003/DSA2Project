@@ -199,13 +199,15 @@ public:
 	*/
 	uint GetOctantCount(void);
 
-private:
 	/*
 	USAGE: Deallocates member fields
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void Release(void);
+
+private:
+	
 	/*
 	USAGE: Allocates member fields
 	ARGUMENTS: ---

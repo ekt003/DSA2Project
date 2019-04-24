@@ -181,11 +181,20 @@ void Simplex::MyEntityManager::Update(void)
 			//if objects are colliding resolve the collision
 			if (m_mEntityArray[i]->IsColliding(m_mEntityArray[j]))
 			{
+				//ship collision
+				if (i == 0) {
+					m_mEntityArray[j]->SetMass(0.5f);
+					m_mEntityArray[0]->SetMass(3.0f);
+				}
+				
 				m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
+				
 			}
 		}
 		//Update each entity
 		m_mEntityArray[i]->Update();
+
+		m_mEntityArray[0]->SetMass(1.0f);
 	}
 }
 void Simplex::MyEntityManager::AddEntity(String a_sFileName, String a_sUniqueID)

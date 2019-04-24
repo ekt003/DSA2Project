@@ -24,6 +24,8 @@ void Application::InitVariables(void)
 	m_pEntityMngr->UsePhysicsSolver();
 	
 	m_Ship = m_pEntityMngr->GetEntity(0);
+
+	m_pEntityMngr->GetEntity(0)->SetMass(1.0f);
 	//Generate first Oct Tree
 	m_pRoot = new MyOctant(1, 5);
 	speedStep = 0;
@@ -100,8 +102,13 @@ void Application::Update(void)
 		//spawnThread = std::thread(&this::LoadEntity, spawnPhase);
 		LoadEntity(spawnPhase);
 
-		if(octEnabled)
+		if (octEnabled) {
+			m_pRoot->Release();
+			delete m_pRoot;
+			m_pRoot = nullptr;
 			m_pRoot = new MyOctant(1, 5); //Redraw Oct Tree
+		}
+			
 		//speed up
 		m_fSpeed += 0.05f;
 		speedStep++;
@@ -131,7 +138,7 @@ void Application::Update(void)
 	{
 		lifeTimer--;
 	}
-	static int cubesSpawned = 0;\
+	static int cubesSpawned = 0;
 	if (!octMode)
 	{
 		if ((timer % (6 / ((int)m_fSpeed + 1))) == 0 && (timer > 600)) { //creates one entity every 10 update loops
@@ -151,8 +158,12 @@ void Application::Update(void)
 
 			if (cubesSpawned > 15)
 			{
-				if (octEnabled)
+				if (octEnabled) {
+					m_pRoot->Release();
+					delete m_pRoot;
+					m_pRoot = nullptr;
 					m_pRoot = new MyOctant(1, 5); //Redraw Oct Tree
+				}
 				cubesSpawned = 0;
 			}
 
@@ -160,28 +171,8 @@ void Application::Update(void)
 	}
 	else
 	{
-		for (int i = 0; i < 5; i++)
-		{
-			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
-			m_nCubeCount++;
-
-		//sets x position based on random value centered around player
-		//sets y position as zero always
-		//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
-		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand((-10*(m_fSpeed*20)), (10*(m_fSpeed*20))), 0.0f, m_v3CameraPos.z + 100);
-		matrix4 m4Position = glm::translate(v3Position);
-		//setting position of cube
-		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
-
-			cubesSpawned++;
-
-			if (cubesSpawned > 150)
-			{
-				if (octEnabled)
-					m_pRoot = new MyOctant(3, 5); //Redraw Oct Tree
-				cubesSpawned = 0;
-			}
-		}
+		OctreeMode(cubesSpawned);
+		cubesSpawned += 5;
 	}
 	//cube timer, to be done better later
 	timer++;
@@ -377,5 +368,33 @@ void Application::SaveHighScore(uint a_highScore) {
 
 		//closes file reader
 		fileWriter.close();
+	}
+}
+
+void Application::OctreeMode(int cubesSpawned) {
+	for (int i = 0; i < 2; i++)
+	{
+		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
+		m_nCubeCount++;
+
+		//sets x position based on random value centered around player
+		//sets y position as zero always
+		//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
+		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand((-10 * (m_fSpeed * 20)), (10 * (m_fSpeed * 20))), 0.0f, m_v3CameraPos.z + 100);
+		matrix4 m4Position = glm::translate(v3Position);
+		//setting position of cube
+		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
+
+		if (cubesSpawned > 150)
+		{
+			if (octEnabled) {
+				m_pRoot->Release();
+				delete m_pRoot;
+				m_pRoot = nullptr;
+				m_pRoot = new MyOctant(3, 5); //Redraw Oct Tree
+			}
+				
+			cubesSpawned = 0;
+		}
 	}
 }

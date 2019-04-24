@@ -212,10 +212,17 @@ private:
 
 	/*
 	USAGE: Stores new high score its proper file spot
-	ARGUMENTS: ---
+	ARGUMENTS: uint highScore -> New high score to add to the file
 	OUTPUT: ---
 	*/
 	void SaveHighScore(uint a_highScore);
+
+	/*
+	USAGE: Enabled for proof of octree working
+	ARGUMENTS: ---
+	OUTPUT: ---
+	*/
+	void OctreeMode(int);
 
 	/*
 	USAGE: Displays the scene
