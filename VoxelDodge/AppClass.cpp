@@ -2,6 +2,7 @@
 using namespace Simplex;
 void Application::InitVariables(void)
 {
+	gameActive = true;
 	//Set the position and target of the camera
 	m_pCameraMngr->SetPositionTargetAndUpward(
 		vector3(0.0f, 5.0f, 25.0f), //Position
@@ -94,25 +95,29 @@ void Application::Update(void)
 	//decide spawn patterns
 	if ((timer) == 2000) {
 
-		//Draw Oct Tree
 		//resets timer
 		timer = 0;
 		//loads appropriate file based on random number generation
 		spawnPhase = glm::linearRand(1, 5);
 		//spawnThread = std::thread(&this::LoadEntity, spawnPhase);
-		LoadEntity(spawnPhase);
+		LoadEntity(spawnPhase);		
+			
+		//speed up
+		m_fSpeed += 0.05f;
+		speedStep++;
+	}
 
+	//Draw Oct Tree
+	if (timer % (int)(200/(m_fSpeed+4)) == 0) {
 		if (octEnabled) {
 			m_pRoot->Release();
 			delete m_pRoot;
 			m_pRoot = nullptr;
 			m_pRoot = new MyOctant(1, 5); //Redraw Oct Tree
 		}
-			
-		//speed up
-		m_fSpeed += 0.05f;
-		speedStep++;
 	}
+
+	
 
 	//speeding up text timer
 	if (timer < 100)
