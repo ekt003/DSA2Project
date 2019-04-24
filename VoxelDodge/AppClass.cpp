@@ -107,6 +107,7 @@ void Application::Update(void)
 		speedStep++;
 	}
 
+	//speeding up text timer
 	if (timer < 100)
 	{
 		speedup = true;
@@ -116,6 +117,7 @@ void Application::Update(void)
 		speedup = false;
 	}
 
+	//Checking collisions with ship
 	if (lifeTimer == 0)
 	{
 		if (m_pEntityMngr->GetEntity(0)->GetRigidBody()->GetIBeCollide() == true)
@@ -190,10 +192,10 @@ void Application::Update(void)
 
 	//Add objects to render list
 	m_pEntityMngr->AddEntityToRenderList(-1, true);
-	//m_pEntityMngr->AddEntityToRenderList(-1, true);
-	vector3 shipPos = m_Ship->GetPosition();
-	shipPos.z += m_fSpeed;
-	m_Ship->SetPosition(shipPos);
+
+	//moves ship
+	vector3 velocity = m_Ship->GetVelocity();
+	m_Ship->SetVelocity(vector3(velocity.x, velocity.y, m_fSpeed));
 
 	/*float fDelta = m_pSystem->GetDeltaTime(0);
 	m_pEntityMngr->ApplyForce(vector3(0.0f, 0.0f, 2.0 * fDelta), "Steve");*/
