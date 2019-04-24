@@ -188,9 +188,6 @@ void Application::Update(void)
 	vector3 velocity = m_Ship->GetVelocity();
 	m_Ship->SetVelocity(vector3(velocity.x, velocity.y, m_fSpeed));
 
-	/*float fDelta = m_pSystem->GetDeltaTime(0);
-	m_pEntityMngr->ApplyForce(vector3(0.0f, 0.0f, 2.0 * fDelta), "Steve");*/
-
 	//destroy entities that are beyond the camera
 	for (size_t i = 1; i < m_pEntityMngr->GetEntityCount(); i++)
 	{
