@@ -96,6 +96,7 @@ void Application::DrawGUI(void)
 				ImGui::Text("Speed: %.02f", m_fSpeed);
 				ImGui::TextColored(v4Color, "Speed: %.01d", speedStep);
 				ImGui::TextColored(v4Color, "Lives: %.01d", m_uLives);
+				ImGui::TextColored(v4Color, "timer: %.01d", timer);
 
 				if (speedup)
 					ImGui::Text("Speeding up");

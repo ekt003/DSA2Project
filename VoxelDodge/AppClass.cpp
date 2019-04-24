@@ -25,6 +25,7 @@ void Application::InitVariables(void)
 	timer = 2000;
 	gameActive = false;
 	//gameActive = true;
+	octEnabled = false;
 
 }
 void Application::Update(void)
@@ -67,9 +68,7 @@ void Application::Update(void)
 			m_fDelta += .5f;
 		}
 	}
-
-	//Generate first Oct Tree
-	m_pRoot = new MyOctant(1, 5);
+	
 
 	//Calculate rotation matrix of the up vector for the camera
 	glm::mat4 rot = glm::rotate(IDENTITY_M4, glm::radians(m_fDelta), AXIS_Z);
@@ -81,7 +80,14 @@ void Application::Update(void)
 	m_pCameraMngr->SetPositionTargetAndUpward(m_v3CameraPos, m_Ship->GetPosition(), newUp);
 	//SPAWN CUBES
 
+
 	//decide spawn patterns
+	if ((timer) == 100 || (timer) == 200 || (timer) == 300 || (timer) == 400 || (timer) == 500 || (timer) == 1000) {
+		if (octEnabled) {
+			//Generate first Oct Tree
+			m_pRoot = new MyOctant(1, 5);
+		}
+	}
 	if ((timer) == 2000) {
 
 		//Draw Oct Tree
@@ -89,12 +95,19 @@ void Application::Update(void)
 		timer = 0;
 		//loads appropriate file based on random number generation
 		spawnPhase = glm::linearRand(1, 5);
+
 		//spawnThread = std::thread(&this::LoadEntity, spawnPhase);
 		LoadEntity(spawnPhase);
+
+		if (octEnabled) {
+			//Generate first Oct Tree
+			m_pRoot = new MyOctant(1, 5);
+		}
 		//speed up
 		m_fSpeed += 0.05f;
 		speedStep++;
 	}
+	
 
 	if (timer < 100)
 	{
@@ -119,18 +132,58 @@ void Application::Update(void)
 		lifeTimer--;
 	}
 
-	if ((timer % (6/((int)m_fSpeed+1))) == 0 && (timer > 600)) { //creates one entity every 10 update loops
-		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
-		m_nCubeCount++;
+	static int cubesSpawned = 0; \
+	if (!octMode)
+	{
+		if ((timer % (6 / ((int)m_fSpeed + 1))) == 0 && (timer > 600)) { //creates one entity every 10 update loops 
 
-		//sets x position based on random value centered around player
-		//sets y position as zero always
-		//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence
-		vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand((-5*(m_fSpeed*20)), (10*(m_fSpeed*20))), 0.0f, m_v3CameraPos.z + 100);
-		matrix4 m4Position = glm::translate(v3Position);
-		//setting position of cube
-		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
+			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
+			m_nCubeCount++;
 
+			//sets x position based on random value centered around player 
+			//sets y position as zero always 
+			//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence 
+			vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand((-5 * (m_fSpeed * 20)), (10 * (m_fSpeed * 20))), 0.0f, m_v3CameraPos.z + 100);
+			matrix4 m4Position = glm::translate(v3Position);
+			//setting position of cube 
+			m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
+
+			cubesSpawned++;
+
+			if (cubesSpawned > 15)
+			{
+				if (octEnabled)
+					m_pRoot = new MyOctant(1, 5); //Redraw Oct Tree 
+				cubesSpawned = 0;
+			}
+
+		}
+	}
+	else
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
+			m_nCubeCount++;
+
+			//sets x position based on random value centered around player 
+			//sets y position as zero always 
+			//sets z position as 100 past the camera position. Eventually the camera will render less than that so it will look like the cubes fade into existence 
+
+			vector3 v3Position = vector3(m_v3CameraPos.x + glm::linearRand((-5 * (m_fSpeed * 20)), (10 * (m_fSpeed * 20))), 0.0f, m_v3CameraPos.z + 100);
+			matrix4 m4Position = glm::translate(v3Position);
+			//setting position of cube 
+			m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));
+
+			cubesSpawned++;
+
+			if (cubesSpawned > 150)
+			{
+				if (octEnabled)
+					m_pRoot = new MyOctant(3, 5); //Redraw Oct Tree 
+				cubesSpawned = 0;
+			}
+		}
 	}
 	//cube timer, to be done better later
 	timer++;
@@ -164,7 +217,9 @@ void Application::Update(void)
 	//spawnThread.join();
 	
 	//Display Oct Tree
-	m_pRoot->Display();
+	if (octEnabled) {
+		m_pRoot->Display();
+	}
 
 	}//gameActive
 

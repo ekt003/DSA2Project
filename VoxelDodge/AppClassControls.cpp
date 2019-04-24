@@ -83,6 +83,15 @@ void Application::ProcessKeyPressed(sf::Event a_event)
 		break;
 	case sf::Keyboard::Right:
 		break;
+	case sf::Keyboard::O:
+		octEnabled = !octEnabled;
+		if (octEnabled) {
+			m_pRoot = new MyOctant(1, 5);
+		}
+		break;
+	case sf::Keyboard::M:
+		octMode = !octMode;
+		break;
 	}
 
 	//gui

@@ -89,6 +89,8 @@ private:
 	sf::Music m_soundBGM; //background music
 	bool gameActive;
 	bool lifeExit = true;
+	bool octEnabled = false;
+	bool octMode = false;
 
 public:
 #pragma region Constructor / Run / Destructor
