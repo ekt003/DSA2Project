@@ -93,7 +93,13 @@ void Application::ProcessKeyPressed(sf::Event a_event)
 		m_iOctLevel++;
 		break;
 	case sf::Keyboard::Subtract:
-
+		if (m_iOctLevel > 0)
+			m_iOctLevel--;
+		break;
+	case sf::Keyboard::Period:
+		m_iOctLevel++;
+		break;
+	case sf::Keyboard::Comma:
 		if (m_iOctLevel > 0)
 			m_iOctLevel--;
 		break;
