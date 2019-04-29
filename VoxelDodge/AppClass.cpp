@@ -108,7 +108,7 @@ void Application::Update(void)
 	}
 
 	//Draw Oct Tree
-	if (timer % (int)(200/(m_fSpeed+4)) == 0) {
+	if (timer % (int)(100/(m_fSpeed+4)) == 0) {
 		if (octEnabled) {
 			m_pRoot->Release();
 			SafeDelete(m_pRoot);
