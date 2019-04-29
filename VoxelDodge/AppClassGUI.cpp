@@ -30,11 +30,11 @@ void Application::DrawGUI(void)
 
 	static ImVec4 v4Color = ImColor(255, 0, 0);
 	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove;
+	Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
 	
-	if (!gameActive)
+	if (currentState == Title)
 	{
 
-		Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
 
 		bool showGameLogo = true;
 		if (showGameLogo)
@@ -134,7 +134,7 @@ void Application::DrawGUI(void)
 			ImGui::End();
 		}
 	}
-	if (gameActive)
+	if (currentState == Game)
 	{
 	
 		//m_bGUI_Main = false;
@@ -176,7 +176,7 @@ void Application::DrawGUI(void)
 			String sAbout =  "";
 			ImGui::Begin(sAbout.c_str(), (bool*)0,ImVec2(10,10),0.0f,window_flags);
 			{
-				Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+				//Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
 				ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("logo-v3.png"));
 
 				ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 50, ImGui::GetWindowSize().y-10);
@@ -246,7 +246,7 @@ void Application::DrawGUI(void)
 		bool showSpeedCounter = true;
 		if (showSpeedCounter)
 		{
-			Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+			//Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
 			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("fastboi.png"));
 
 			//std::cout << "Step Count: " << speedStep << std::endl;
@@ -287,7 +287,7 @@ void Application::DrawGUI(void)
 			}
 			ImGui::End();
 			//icons
-			Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
+			//Simplex::TextureManager *txtManager = Simplex::TextureManager::GetInstance();
 			ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("lifeboi.png"));
 			
 			if ((m_uLives) <= 0) {
@@ -319,6 +319,24 @@ void Application::DrawGUI(void)
 			//std::cout << "LIVES = " << m_uLives<< std::endl;
 		}
 	}//gameactive
+	if (currentState == End)
+	{
+		bool showGameOver = true;
+		if (showGameOver)
+		{
+			ImGui::SetNextWindowPos(ImVec2(180, 200), ImGuiSetCond_Always);
+			ImGui::SetNextWindowSize(ImVec2(1000, 180), ImGuiSetCond_Always);
+			String sAbout = "gameOver";
+			ImGui::Begin(sAbout.c_str(), (bool*)0, ImVec2(10, 10), 0.0f, window_flags);
+			{
+				ImTextureID tex = (ImTextureID)txtManager->ReturnGLIndex(txtManager->IdentifyTexure("gameover.png"));
+
+				ImVec2 windowSizeAdj = ImVec2(ImGui::GetWindowSize().x - 50, ImGui::GetWindowSize().y - 10);
+				ImGui::Image(tex, windowSizeAdj);
+			}
+			ImGui::End();
+		}
+	}
 
 		// Rendering
 		ImGui::Render();

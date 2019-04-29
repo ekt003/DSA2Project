@@ -93,6 +93,8 @@ private:
 	sf::Sound m_sound; //sound effect
 	sf::Music m_soundBGM; //background music
 	bool gameActive;
+	enum GameState { Title, Game, End };
+	GameState currentState;
 	bool lifeExit = true;
 
 public:

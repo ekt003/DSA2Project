@@ -18,6 +18,7 @@ void Application::InitVariables(void)
 	Simplex::TextureManager::GetInstance()->LoadTexture("button-o.png");
 	Simplex::TextureManager::GetInstance()->LoadTexture("button-u.png");
 	Simplex::TextureManager::GetInstance()->LoadTexture("arrows.png");
+	Simplex::TextureManager::GetInstance()->LoadTexture("gameover.png");
 
 	m_pEntityMngr->AddEntity("Minecraft\\Spaceship.obj", "Spaceship");
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube");
@@ -31,7 +32,8 @@ void Application::InitVariables(void)
 	m_pRoot = new MyOctant(m_iOctLevel, 5);
 	speedStep = 0;
 	timer = 2000;
-	gameActive = false;
+	currentState = Title;
+	//gameActive = false;
 	//gameActive = true;
 
 	//loading in high scores from a file
@@ -43,7 +45,7 @@ void Application::Update(void)
 {
 	//Update the system so it knows how much time has passed since the last call
 	m_pSystem->Update();
-	if(gameActive){
+	if(currentState == Game){
 	//Is the ArcBall active?
 	ArcBall();
 
@@ -141,6 +143,10 @@ void Application::Update(void)
 	if (lifeTimer != 0)
 	{
 		lifeTimer--;
+	}
+	if (m_uLives <= 0)
+	{
+		currentState = End;
 	}
 	static int cubesSpawned = 0;
 	if (!octMode)
