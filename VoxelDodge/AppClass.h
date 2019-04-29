@@ -95,6 +95,7 @@ private:
 	bool gameActive;
 	enum GameState { Title, Game, End };
 	GameState currentState;
+	bool godMode = false;
 	bool lifeExit = true;
 
 public:

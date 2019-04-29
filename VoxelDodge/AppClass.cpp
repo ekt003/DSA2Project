@@ -144,7 +144,7 @@ void Application::Update(void)
 	{
 		lifeTimer--;
 	}
-	if (m_uLives <= 0)
+	if (m_uLives <= 0 && godMode == false)
 	{
 		currentState = End;
 	}

@@ -84,7 +84,7 @@ void Application::ProcessKeyPressed(sf::Event a_event)
 	case sf::Keyboard::Right:
 		break;
 	case sf::Keyboard::O:
-		octEnabled = !octEnabled;
+		//octEnabled = !octEnabled;
 		break;
 	case sf::Keyboard::M:
 		octMode = !octMode;
@@ -485,8 +485,9 @@ void Application::ProcessKeyboard(void)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
 	{
+		godMode = !godMode;
 		//gameActive = true;
-		currentState = End;
+		//currentState = End;
 	}
 
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))

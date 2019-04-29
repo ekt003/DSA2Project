@@ -151,17 +151,21 @@ void Application::DrawGUI(void)
 					ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
 				ImGui::Separator();
 				ImGui::Text("Control:\n");
-				ImGui::Text("   WASD: Movement\n");
-				ImGui::Text("	 F1: Perspective\n");
-				ImGui::Text("	 F2: Orthographic X\n");
-				ImGui::Text("	 F3: Orthographic Y\n");
-				ImGui::Text("	 F4: Orthographic Z\n");
 				ImGui::Separator();
-				ImGui::Text("Arrows: Apply force to Steve\n");
+				ImGui::Text("Arrows: Fly the ship\n");
+				ImGui::Text("Comma: Decrement OctTree\n");
+				ImGui::Text("Period: Increment OctTree\n");
+				ImGui::Text("G: Turn on God Mode(Game won't end after 3 lives)\n");
+				ImGui::Text("M: Turn on Block Rush Mode\n");
+				ImGui::Separator();
 				ImGui::Text("Score: %.0d", m_uScore);
 				ImGui::Text("Speed: %.02f", m_fSpeed);
 				ImGui::TextColored(v4Color, "Speed: %.01d", speedStep);
 				ImGui::TextColored(v4Color, "Lives: %.01d", m_uLives);
+				if (godMode)
+				{
+					ImGui::TextColored(v4Color, "GOD MODE ON");
+				}
 
 				if (speedup)
 					ImGui::Text("Speeding up");
