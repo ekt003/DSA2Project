@@ -184,7 +184,6 @@ void Simplex::MyEntityManager::Update(void)
 				//ship collision
 				if (i == 0) {
 					m_mEntityArray[j]->SetMass(0.5f);
-					m_mEntityArray[0]->SetMass(3.0f);
 				}
 				
 				m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
