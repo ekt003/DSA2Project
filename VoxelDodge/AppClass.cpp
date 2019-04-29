@@ -28,7 +28,7 @@ void Application::InitVariables(void)
 
 	m_pEntityMngr->GetEntity(0)->SetMass(1.0f);
 	//Generate first Oct Tree
-	m_pRoot = new MyOctant(1, 5);
+	m_pRoot = new MyOctant(m_iOctLevel, 5);
 	speedStep = 0;
 	timer = 2000;
 	gameActive = false;
@@ -111,9 +111,8 @@ void Application::Update(void)
 	if (timer % (int)(200/(m_fSpeed+4)) == 0) {
 		if (octEnabled) {
 			m_pRoot->Release();
-			delete m_pRoot;
-			m_pRoot = nullptr;
-			m_pRoot = new MyOctant(1, 5); //Redraw Oct Tree
+			SafeDelete(m_pRoot);
+			m_pRoot = new MyOctant(m_iOctLevel, 5); //Redraw Oct Tree
 		}
 	}
 
@@ -165,9 +164,8 @@ void Application::Update(void)
 			{
 				if (octEnabled) {
 					m_pRoot->Release();
-					delete m_pRoot;
-					m_pRoot = nullptr;
-					m_pRoot = new MyOctant(1, 5); //Redraw Oct Tree
+					SafeDelete(m_pRoot);
+					m_pRoot = new MyOctant(m_iOctLevel, 5); //Redraw Oct Tree
 				}
 				cubesSpawned = 0;
 			}
@@ -391,9 +389,8 @@ void Application::OctreeMode(int cubesSpawned) {
 		{
 			if (octEnabled) {
 				m_pRoot->Release();
-				delete m_pRoot;
-				m_pRoot = nullptr;
-				m_pRoot = new MyOctant(3, 5); //Redraw Oct Tree
+				SafeDelete(m_pRoot);
+				m_pRoot = new MyOctant(m_iOctLevel, 5); //Redraw Oct Tree
 			}
 				
 			cubesSpawned = 0;

@@ -89,6 +89,14 @@ void Application::ProcessKeyPressed(sf::Event a_event)
 	case sf::Keyboard::M:
 		octMode = !octMode;
 		break;
+	case sf::Keyboard::Add:
+		m_iOctLevel++;
+		break;
+	case sf::Keyboard::Subtract:
+
+		if (m_iOctLevel > 0)
+			m_iOctLevel--;
+		break;
 	}
 
 	//gui

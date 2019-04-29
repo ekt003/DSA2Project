@@ -29,7 +29,7 @@ private:
 	int m_nCubeCount = 0; //Number of total cubes created;
 
 	//Oct Tree
-
+	uint m_iOctLevel = 1; //Make a variable to increment and decrement oct tree.
 	MyOctant* m_pRoot;
 
 	uint timer;
