@@ -183,17 +183,19 @@ void Simplex::MyEntityManager::Update(void)
 			{
 				//ship collision
 				if (i == 0) {
-					m_mEntityArray[j]->SetMass(0.5f);
+					m_mEntityArray[j]->SetMass(0.2f);
+					m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
+					m_mEntityArray[j]->SetMass(1.0f);
+				}
+				else {
+					m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 				}
 				
-				m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 				
 			}
 		}
 		//Update each entity
 		m_mEntityArray[i]->Update();
-
-		m_mEntityArray[0]->SetMass(1.0f);
 	}
 }
 void Simplex::MyEntityManager::AddEntity(String a_sFileName, String a_sUniqueID)
