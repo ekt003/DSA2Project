@@ -480,7 +480,13 @@ void Application::ProcessKeyboard(void)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 	{
-		gameActive = true;
+		//gameActive = true;
+		currentState = Game;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
+	{
+		//gameActive = true;
+		currentState = End;
 	}
 
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
