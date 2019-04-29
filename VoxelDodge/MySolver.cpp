@@ -115,19 +115,7 @@ void MySolver::ResolveCollision(MySolver* a_pOther)
 	float fMagThis = glm::length(m_v3Velocity);
 	float fMagOther = glm::length(m_v3Velocity);
 
-	if (fMagThis > 0.015f || fMagOther > 0.015f)
-	{
-		//a_pOther->ApplyForce(GetVelocity());
-		ApplyForce(-m_v3Velocity*2);
-		a_pOther->ApplyForce(vector3((m_v3Velocity.x*30), (m_v3Velocity.y+1), (m_v3Velocity.z*20)));
-	}
-	else
-	{
-		vector3 v3Direction = m_v3Position - a_pOther->m_v3Position;
-		if(glm::length(v3Direction) != 0)
-			v3Direction = glm::normalize(v3Direction);
-		v3Direction *= 0.04f;
-		ApplyForce(v3Direction);
-		a_pOther->ApplyForce(-v3Direction);
-	}
+	ApplyForce(-m_v3Velocity * 2);
+	a_pOther->ApplyForce(vector3((m_v3Velocity.x * 30), (m_v3Velocity.y + glm::linearRand(1, 4)), (m_v3Velocity.z * 20)));
+
 }

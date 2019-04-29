@@ -274,11 +274,11 @@ void Application::SpawnEntity(void) {
 	for (int i = 0; i < 120; i++) {
 		for (int j = 0; j < 24; j++) {
 			if (spawnMap[i][j] == 1) {
-				m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_");
+				m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + m_nCubeCount);
+				m_nCubeCount++;
 				vector3 position = startingPoint;
 				position.z += (i*3) + 80;
 				position.x += ((j*3));
-
 				matrix4 m4Position = glm::translate(position);
 
 				m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(2.0f)));

@@ -70,7 +70,7 @@ void Simplex::MyEntity::Init(void)
 	m_m4ToWorld = IDENTITY_M4;
 	m_sUniqueID = "";
 	m_nDimensionCount = 0;
-	m_bUsePhysicsSolver = false;
+	m_bUsePhysicsSolver = true;
 	m_pSolver = nullptr;
 }
 void Simplex::MyEntity::Swap(MyEntity& other)

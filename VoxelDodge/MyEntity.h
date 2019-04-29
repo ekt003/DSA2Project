@@ -28,7 +28,7 @@ class MyEntity
 
 	static std::map<String, MyEntity*> m_IDMap; //a map of the unique ID's
 
-	bool m_bUsePhysicsSolver = false; //Indicates if we will use a physics solver 
+	bool m_bUsePhysicsSolver = true; //Indicates if we will use a physics solver 
 
 	MySolver* m_pSolver = nullptr; //Physics MySolver
 

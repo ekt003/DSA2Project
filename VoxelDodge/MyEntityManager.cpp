@@ -190,8 +190,6 @@ void Simplex::MyEntityManager::Update(void)
 				else {
 					m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 				}
-				
-				
 			}
 		}
 		//Update each entity
